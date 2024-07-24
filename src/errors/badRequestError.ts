@@ -5,15 +5,18 @@
  */
 
 import { ApiError } from '../core';
+import { BadRequestErrMsg } from '../models/badRequestErrMsg';
 
 /**
  * Creates an instance of BadRequest
  */
 interface BadRequest {
-  /** Error code */
-  code?: string;
-  /** Error desctiption in English */
-  message?: string;
+  /** requestId is unique identifier value that is attached to requests and messages that allow reference to a particular transaction or event chain. */
+  requestId?: string;
+  /** Status of the request */
+  status?: string;
+  /** Exception details of the error */
+  errors?: BadRequestErrMsg[];
 }
 
 export class BadRequestError extends ApiError<BadRequest> {}

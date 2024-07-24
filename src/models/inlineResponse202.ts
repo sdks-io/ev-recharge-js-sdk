@@ -23,7 +23,7 @@ export interface InlineResponse202 {
 }
 
 export const inlineResponse202Schema: Schema<InlineResponse202> = object({
-  requestId: ['RequestId', string()],
-  status: ['Status', inlineResponse202StatusEnumSchema],
-  data: ['Data', array(lazy(() => inlineResponse202DataSchema))],
+  requestId: ['requestId', string()],
+  status: ['status', inlineResponse202StatusEnumSchema],
+  data: ['data', array(lazy(() => inlineResponse202DataSchema))],
 });

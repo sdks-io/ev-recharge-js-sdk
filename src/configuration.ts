@@ -6,21 +6,28 @@
 
 import { HttpClientOptions } from './clientAdapter';
 import { ClientCredentialsAuthManager } from './clientCredentialsAuthManager';
-import { EnvEnum } from './models/envEnum';
 import { OAuthToken } from './models/oAuthToken';
 
 /** An interface for all configuration parameters required by the SDK. */
 export interface Configuration {
   timeout: number;
   environment: Environment;
-  env: EnvEnum;
+  /** @deprecated use clientCredentialsAuthCredentials field instead */
+  oAuthClientId?: string;
+  /** @deprecated use clientCredentialsAuthCredentials field instead */
+  oAuthClientSecret?: string;
+  /** @deprecated use clientCredentialsAuthCredentials field instead */
+  oAuthToken?: OAuthToken;
   clientCredentialsAuthCredentials?: {
     oAuthClientId: string;
     oAuthClientSecret: string;
     oAuthToken?: OAuthToken;
-    oAuthTokenProvider?: (lastOAuthToken: OAuthToken | undefined,
-      authManager: ClientCredentialsAuthManager) => Promise<OAuthToken>;
+    oAuthTokenProvider?: (
+      lastOAuthToken: OAuthToken | undefined,
+      authManager: ClientCredentialsAuthManager
+    ) => Promise<OAuthToken>;
     oAuthOnTokenUpdate?: (token: OAuthToken) => void;
+    oAuthClockSkew?: number;
   };
   httpClientOptions?: Partial<HttpClientOptions>;
   unstable_httpClientOptions?: any;
@@ -29,4 +36,5 @@ export interface Configuration {
 /** Environments available for API */
 export enum Environment {
   Production = 'production',
+  Environment2 = 'environment2',
 }

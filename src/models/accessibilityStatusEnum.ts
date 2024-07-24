@@ -19,4 +19,6 @@ export enum AccessibilityStatusEnum {
 /**
  * Schema for AccessibilityStatusEnum
  */
-export const  accessibilityStatusEnumSchema: Schema<AccessibilityStatusEnum> = stringEnum(AccessibilityStatusEnum);
+export const accessibilityStatusEnumSchema: Schema<AccessibilityStatusEnum> = stringEnum(
+  AccessibilityStatusEnum
+);

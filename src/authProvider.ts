@@ -6,6 +6,7 @@
 
 import {
   compositeAuthenticationProvider,
+  OAuthConfiguration,
   requestAuthenticationProvider,
 } from './authentication';
 import { ClientCredentialsAuthManager } from './clientCredentialsAuthManager';
@@ -19,23 +20,33 @@ export function createAuthProviderFromConfig(
   const authConfig = {
     bearerAuth:
       config.clientCredentialsAuthCredentials &&
-      requestAuthenticationProvider (
+      requestAuthenticationProvider(
         config.clientCredentialsAuthCredentials.oAuthToken,
-        bearerAuthTokenProvider(bearerAuth, config.clientCredentialsAuthCredentials.oAuthTokenProvider),
-        config.clientCredentialsAuthCredentials.oAuthOnTokenUpdate
-    ),
+        bearerAuthTokenProvider(
+          bearerAuth,
+          config.clientCredentialsAuthCredentials.oAuthTokenProvider
+        ),
+        config.clientCredentialsAuthCredentials.oAuthOnTokenUpdate,
+        {
+          clockSkew: config.clientCredentialsAuthCredentials.oAuthClockSkew,
+        } as OAuthConfiguration
+      ),
   };
 
-  return compositeAuthenticationProvider <
+  return compositeAuthenticationProvider<
     keyof typeof authConfig,
     typeof authConfig
-  > (authConfig);
+  >(authConfig);
 }
 
 function bearerAuthTokenProvider(
   bearerAuth: () => ClientCredentialsAuthManager,
-  defaultProvider: ((lastOAuthToken: OAuthToken | undefined,
-    authManager: ClientCredentialsAuthManager) => Promise<OAuthToken>) | undefined
+  defaultProvider:
+    | ((
+        lastOAuthToken: OAuthToken | undefined,
+        authManager: ClientCredentialsAuthManager
+      ) => Promise<OAuthToken>)
+    | undefined
 ): ((token: OAuthToken | undefined) => Promise<OAuthToken>) | undefined {
   return (token: OAuthToken | undefined) => {
     const manager = bearerAuth();
@@ -45,4 +56,3 @@ function bearerAuthTokenProvider(
     return defaultProvider(token, manager);
   };
 }
-

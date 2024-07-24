@@ -19,4 +19,6 @@ export enum TariffVOUpdatedByEnum {
 /**
  * Schema for TariffVOUpdatedByEnum
  */
-export const  tariffVOUpdatedByEnumSchema: Schema<TariffVOUpdatedByEnum> = stringEnum(TariffVOUpdatedByEnum);
+export const tariffVOUpdatedByEnumSchema: Schema<TariffVOUpdatedByEnum> = stringEnum(
+  TariffVOUpdatedByEnum
+);

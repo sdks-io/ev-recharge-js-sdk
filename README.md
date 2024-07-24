@@ -3,14 +3,23 @@
 
 ## Introduction
 
-This API Product provides the option to manage charging at all public Shell Recharge locations. The end points provides control to start, stop and get status of the charging session.
+This API Product provides the list of all Shell Recharge locations. The list includes all Shell Recharge network and all locations available through our roaming partners.
 
-Supported Function
+Supported Functions
 
-* Start a charging session
-* Stop a charging session
-* Retrieve the status of a charging session
-* Retrieve the list of all active sessions for a card   termsOfService: 'https://developer.shell.com/terms-of-use'
+* Get the list of all the locations and its details.
+* Get the details of a particular location.
+* Get the list of locations nearby using the latitude and longitude.
+* Get the list of locations for a given set of bounds with different zoom levels.
+
+The Charging endpoints provides control to start, stop and get status of the charging session.
+
+Supported Functions
+
+* Start a charging session\n
+* Stop a charging session \n
+* Retrieve the status of a charging session \n
+* Retrieve the list of all active sessions for a card
 
 Go to the Shell Developer Portal: [https://developer.shell.com](https://developer.shell.com)
 
@@ -19,25 +28,24 @@ Go to the Shell Developer Portal: [https://developer.shell.com](https://develope
 Run the following command from your project directory to install the package from npm:
 
 ```ts
-npm install ev-recharge-sdk@1.0.0
+npm install ev-recharge-sdk@1.2.0
 ```
 
-For additional package details, see the [Npm page for the ev-recharge-sdk@1.0.0 npm](https://www.npmjs.com/package/ev-recharge-sdk/v/1.0.0).
+For additional package details, see the [Npm page for the ev-recharge-sdk@1.2.0 npm](https://www.npmjs.com/package/ev-recharge-sdk/v/1.2.0).
 
 ## Initialize the API Client
 
-**_Note:_** Documentation for the client can be found [here.](https://www.github.com/sdks-io/ev-recharge-js-sdk/tree/1.0.0/doc/client.md)
+**_Note:_** Documentation for the client can be found [here.](https://www.github.com/sdks-io/ev-recharge-js-sdk/tree/1.2.0/doc/client.md)
 
 The following parameters are configurable for the API Client:
 
 | Parameter | Type | Description |
 |  --- | --- | --- |
-| `env` | `EnvEnum` | This variable specifies the type of environment. Environments:<br><br>* `api` - Production<br>* `api-test` - UAT<br>*Default*: `EnvEnum.EnumApitestshellcom` |
 | `environment` | `Environment` | The API environment. <br> **Default: `Environment.Production`** |
 | `timeout` | `number` | Timeout for API calls.<br>*Default*: `0` |
 | `httpClientOptions` | `Partial<HttpClientOptions>` | Stable configurable http client options. |
 | `unstableHttpClientOptions` | `any` | Unstable configurable http client options. |
-| `clientCredentialsAuthCredentials` | [`ClientCredentialsAuthCredentials`](https://www.github.com/sdks-io/ev-recharge-js-sdk/tree/1.0.0/doc/$a/https://www.github.com/sdks-io/ev-recharge-js-sdk/tree/1.0.0/oauth-2-client-credentials-grant.md) | The credential object for clientCredentialsAuth |
+| `clientCredentialsAuthCredentials` | [`ClientCredentialsAuthCredentials`](https://www.github.com/sdks-io/ev-recharge-js-sdk/tree/1.2.0/doc/$a/https://www.github.com/sdks-io/ev-recharge-js-sdk/tree/1.2.0/oauth-2-client-credentials-grant.md) | The credential object for clientCredentialsAuth |
 
 ### HttpClientOptions
 
@@ -73,20 +81,30 @@ const client = new Client({
 });
 ```
 
+## Environments
+
+The SDK can be configured to use a different environment for making API calls. Available environments are:
+
+### Fields
+
+| Name | Description |
+|  --- | --- |
+| production | **Default** Production |
+| environment2 | Test |
+
 ## Authorization
 
 This API uses the following authentication schemes.
 
-* [`BearerAuth (OAuth 2 Client Credentials Grant)`](https://www.github.com/sdks-io/ev-recharge-js-sdk/tree/1.0.0/doc/$a/https://www.github.com/sdks-io/ev-recharge-js-sdk/tree/1.0.0/oauth-2-client-credentials-grant.md)
+* [`BearerAuth (OAuth 2 Client Credentials Grant)`](https://www.github.com/sdks-io/ev-recharge-js-sdk/tree/1.2.0/doc/$a/https://www.github.com/sdks-io/ev-recharge-js-sdk/tree/1.2.0/oauth-2-client-credentials-grant.md)
 
 ## List of APIs
 
-* [O Auth Authorization](https://www.github.com/sdks-io/ev-recharge-js-sdk/tree/1.0.0/doc/controllers/o-auth-authorization.md)
-* [Charging](https://www.github.com/sdks-io/ev-recharge-js-sdk/tree/1.0.0/doc/controllers/charging.md)
-* [Locations](https://www.github.com/sdks-io/ev-recharge-js-sdk/tree/1.0.0/doc/controllers/locations.md)
+* [Locations](https://www.github.com/sdks-io/ev-recharge-js-sdk/tree/1.2.0/doc/controllers/locations.md)
+* [Charging](https://www.github.com/sdks-io/ev-recharge-js-sdk/tree/1.2.0/doc/controllers/charging.md)
 
 ## Classes Documentation
 
-* [ApiResponse](https://www.github.com/sdks-io/ev-recharge-js-sdk/tree/1.0.0/doc/api-response.md)
-* [ApiError](https://www.github.com/sdks-io/ev-recharge-js-sdk/tree/1.0.0/doc/api-error.md)
+* [ApiResponse](https://www.github.com/sdks-io/ev-recharge-js-sdk/tree/1.2.0/doc/api-response.md)
+* [ApiError](https://www.github.com/sdks-io/ev-recharge-js-sdk/tree/1.2.0/doc/api-error.md)
 

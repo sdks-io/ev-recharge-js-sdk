@@ -11,13 +11,13 @@
 
 | Name |
 |  --- |
-| `sun` |
-| `mon` |
-| `tue` |
-| `wed` |
-| `thu` |
-| `fri` |
-| `sat` |
+| `Sun` |
+| `Mon` |
+| `Tue` |
+| `Wed` |
+| `Thu` |
+| `Fri` |
+| `Sat` |
 
 ## Example
 

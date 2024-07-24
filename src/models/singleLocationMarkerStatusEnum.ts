@@ -19,4 +19,6 @@ export enum SingleLocationMarkerStatusEnum {
 /**
  * Schema for SingleLocationMarkerStatusEnum
  */
-export const  singleLocationMarkerStatusEnumSchema: Schema<SingleLocationMarkerStatusEnum> = stringEnum(SingleLocationMarkerStatusEnum);
+export const singleLocationMarkerStatusEnumSchema: Schema<SingleLocationMarkerStatusEnum> = stringEnum(
+  SingleLocationMarkerStatusEnum
+);

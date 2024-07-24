@@ -11,7 +11,13 @@ Methods that can be used to Authorize sessions on this EVSE
 
 | Name |
 |  --- |
-| `newMotionApp` |
-| `rFIDToken` |
-| `pnC` |
+| `NewMotionApp` |
+| `RFIDToken` |
+| `PnC` |
+
+## Example
+
+```
+NewMotionApp
+```
 

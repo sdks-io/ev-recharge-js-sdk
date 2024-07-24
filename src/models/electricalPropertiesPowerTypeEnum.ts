@@ -18,4 +18,6 @@ export enum ElectricalPropertiesPowerTypeEnum {
 /**
  * Schema for ElectricalPropertiesPowerTypeEnum
  */
-export const  electricalPropertiesPowerTypeEnumSchema: Schema<ElectricalPropertiesPowerTypeEnum> = stringEnum(ElectricalPropertiesPowerTypeEnum);
+export const electricalPropertiesPowerTypeEnumSchema: Schema<ElectricalPropertiesPowerTypeEnum> = stringEnum(
+  ElectricalPropertiesPowerTypeEnum
+);

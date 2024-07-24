@@ -25,7 +25,7 @@ import {
 
 /** A Marker is a place on the map that represent a single Location */
 export interface SingleLocationMarker {
-  /** Identifies the marker type. If it''s a `SingleLocationMarker`, then the value is `SingleLocation` */
+  /** Identifies the marker type. If it’s a `SingleLocationMarker`, then the value is `SingleLocation` */
   markerType: string;
   /** Uniquely identifies the marker object */
   uniqueKey?: string;

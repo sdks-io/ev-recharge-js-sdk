@@ -11,10 +11,10 @@ Minimum of all status values in the Marker, e.g. if at least one Evse in the Mar
 
 | Name |
 |  --- |
-| `available` |
-| `occupied` |
-| `unavailable` |
-| `unknown` |
+| `Available` |
+| `Occupied` |
+| `Unavailable` |
+| `Unknown` |
 
 ## Example
 

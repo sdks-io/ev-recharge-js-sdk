@@ -1,5 +1,5 @@
 {
-  "version": "1.0.0",
+  "version": "1.2.0",
   "license": "MIT",
   "sideEffects": false,
   "main": "dist/cjs/index.js",
@@ -23,7 +23,8 @@
     "printWidth": 80,
     "semi": true,
     "singleQuote": true,
-    "trailingComma": "es5"
+    "trailingComma": "es5",
+    "quoteProps": "preserve"
   },
   "name": "ev-recharge-sdk",
   "description": "This API Product provides the option to manage charging at all public Shell Recharge locations. The end points provides control to start, stop and get status of the charging session.",
@@ -43,15 +44,11 @@
     "typescript": "^4.9.5"
   },
   "dependencies": {
-    "@apimatic/authentication-adapters": "^0.5.0",
-    "@apimatic/axios-client-adapter": "^0.3.0",
-    "@apimatic/core": "^0.10.0",
-    "@apimatic/oauth-adapters": "^0.4.1",
-    "@apimatic/schema": "^0.7.0"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/sdks-io/ev-recharge-js-sdk.git"
+    "@apimatic/authentication-adapters": "^0.5.3",
+    "@apimatic/axios-client-adapter": "^0.3.3",
+    "@apimatic/core": "^0.10.11",
+    "@apimatic/oauth-adapters": "^0.4.3",
+    "@apimatic/schema": "^0.7.11"
   },
   "bugs": {
     "url": "https://developer.shell.com/support",

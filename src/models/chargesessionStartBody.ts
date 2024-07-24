@@ -7,12 +7,12 @@
 import { object, Schema, string } from '../schema';
 
 export interface ChargesessionStartBody {
-  /** The EV Charge Number which can be found on the back of the Shell EV Card */
+  /** Ev charge number */
   evChargeNumber: string;
-  /** Standard EVSE (Electric Vehicle Supply Equipment) Id identifier (ISO-IEC-15118) */
+  /** This is the Electric Vehicle EquipmentID */
   evseId: string;
 }
 
 export const chargesessionStartBodySchema: Schema<ChargesessionStartBody> = object(
-  { evChargeNumber: ['EvChargeNumber', string()], evseId: ['EvseId', string()] }
+  { evChargeNumber: ['evChargeNumber', string()], evseId: ['evseId', string()] }
 );

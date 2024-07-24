@@ -18,7 +18,7 @@ export interface TariffVO {
   perMinute?: number;
   /** Tariff per kWh of energy consumed */
   perKWh?: number;
-  /** ISO 4217 Curreny Code of the local currency. */
+  /** ISO 4217 Currency Code of the local currency. */
   currency?: string;
   /** ISO8601-compliant UTC datetime of the last update of the Tariff */
   updated?: string;

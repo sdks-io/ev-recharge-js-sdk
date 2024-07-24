@@ -5,28 +5,6 @@
  */
 
 import { ApiResponse, RequestOptions } from '../core';
-import { HTTP401ErrorResponseError } from '../errors/hTTP401ErrorResponseError';
-import {
-  M400ErrorResponseError1Error,
-} from '../errors/m400ErrorResponseError1Error';
-import {
-  M401ErrorResponseError1Error,
-} from '../errors/m401ErrorResponseError1Error';
-import {
-  M404ErrorResponseError1Error,
-} from '../errors/m404ErrorResponseError1Error';
-import {
-  M405ErrorResponseError1Error,
-} from '../errors/m405ErrorResponseError1Error';
-import {
-  M429ErrorResponseError1Error,
-} from '../errors/m429ErrorResponseError1Error';
-import {
-  M500ErrorResponseError1Error,
-} from '../errors/m500ErrorResponseError1Error';
-import {
-  M503ErrorResponseError1Error,
-} from '../errors/m503ErrorResponseError1Error';
 import {
   ActiveResponse200Json,
   activeResponse200JsonSchema,
@@ -47,29 +25,30 @@ import {
   InlineResponse2021,
   inlineResponse2021Schema,
 } from '../models/inlineResponse2021';
-import {
-  StopChargeSessionRequestBodyJson,
-  stopChargeSessionRequestBodyJsonSchema,
-} from '../models/stopChargeSessionRequestBodyJson';
 import { optional, string } from '../schema';
 import { BaseController } from './baseController';
+import { BadRequestError } from '../errors/badRequestError';
+import { InternalServerError } from '../errors/internalServerError';
+import { NotFoundError } from '../errors/notFoundError';
+import { ServiceunavailableError } from '../errors/serviceunavailableError';
+import { TooManyRequestsError } from '../errors/tooManyRequestsError';
+import { UnauthorizedError } from '../errors/unauthorizedError';
 
 export class ChargingController extends BaseController {
   /**
-   * This API initiates to start a session on a EVSE (Electric Vehicle Supply Equipement). When the EV
-   * Charge Card number and the unique EVSE ID on the location is provided, the session is initiated.
+   * This endpoint start the charging session for the user.
    *
-   * Please note that this is an asynchronous request, the request will be passed on to the
-   * operator/platform to be processed further.
-   *
-   *
-   * @param requestId    A unique request id in GUID format. The value is written to
-   *                                                      the Shell API Platform audit log for end to end traceability
-   *                                                      of a request.
+   * @param requestId    RequestId must be unique identifier value that can be used
+   *                                                      by the consumer to correlate each request /response .
+   *                                                      <br>Format.<br> Its canonical textual representation, the 16
+   *                                                      octets of a UUID are represented as 32 hexadecimal (base-16)
+   *                                                      digits, displayed in five groups separated by hyphens, in the
+   *                                                      form 8-4-4-4-12 for a total of 36 characters (32 hexadecimal
+   *                                                      characters and 4 hyphens) <br>
    * @param body
    * @return Response from the API call
    */
-  async startChargeSession(
+  async start(
     requestId: string,
     body?: ChargesessionStartBody,
     requestOptions?: RequestOptions
@@ -82,91 +61,114 @@ export class ChargingController extends BaseController {
     req.header('RequestId', mapped.requestId);
     req.header('Content-Type', 'application/json');
     req.json(mapped.body);
-    req.throwOn(400, M400ErrorResponseError1Error, 'Bad Request\n');
-    req.throwOn(401, HTTP401ErrorResponseError, 'Unauthorized');
-    req.throwOn(404, M404ErrorResponseError1Error, 'Invalid charge token with given EmaId was not found.\n\nBackend HTTP 410 should be transformed to 404.');
-    req.throwOn(405, M405ErrorResponseError1Error, 'Method Not Allowed');
-    req.throwOn(429, M429ErrorResponseError1Error, 'Too Many Requests');
-    req.throwOn(500, M500ErrorResponseError1Error, 'Internal Server Error');
-    req.throwOn(503, M503ErrorResponseError1Error, 'Returned when a connectivity failure is encountered like DB connection failed, endpoint failed etc or when max number of retries are completed');
+    req.throwOn(
+      400,
+      BadRequestError,
+      'The server cannot or will not process the request due to something that is perceived to be a client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing).'
+    );
+    req.throwOn(
+      401,
+      UnauthorizedError,
+      'The request has not been applied because it lacks valid authentication credentials for the target resource.'
+    );
+    req.throwOn(404, NotFoundError, 'Location Not Found');
+    req.throwOn(
+      429,
+      TooManyRequestsError,
+      'The Request reached maximum allocated rate limit'
+    );
+    req.throwOn(500, InternalServerError, 'Internal Server error');
+    req.throwOn(503, ServiceunavailableError, 'Service unavailable');
     req.authenticate([{ bearerAuth: true }]);
     return req.callAsJson(inlineResponse202Schema, requestOptions);
   }
 
   /**
-   * This API stops a session by providing the session ID which was retrieved when starting the session.
-   * HTTP 202 response will be returned if the request is accepted. Once the session is stopped the
-   * response will contain the DateTime on which it is stopped.      operationId: Stop
+   * Accepts a request to stop an active session when a valid session id is provided.
    *
-   *
-   * @param requestId    A unique request id in GUID format. The value is
-   *                                                                written to the Shell API Platform audit log for end
-   *                                                                to end traceability of a request.
-   * @param uuid         Unique session ID which was generated to activate
-   *                                                                a charging session.
-   * @param body
+   * @param requestId RequestId must be unique identifier value that can be used by the consumer to
+   *                            correlate each request /response .<br>Format.<br> Its canonical textual representation,
+   *                            the 16 octets of a UUID are represented as 32 hexadecimal (base-16) digits, displayed
+   *                            in five groups separated by hyphens, in the form 8-4-4-4-12 for a total of 36
+   *                            characters (32 hexadecimal characters and 4 hyphens) <br>
+   * @param sessionId Session Id
    * @return Response from the API call
    */
-  async stopChargeSession(
+  async stop(
     requestId: string,
-    uuid: string,
-    body?: StopChargeSessionRequestBodyJson,
+    sessionId: string,
     requestOptions?: RequestOptions
   ): Promise<ApiResponse<InlineResponse2021>> {
-    const req = this.createRequest('POST');
+    const req = this.createRequest('POST', '/ev/v1/charge-session/stop');
     const mapped = req.prepareArgs({
       requestId: [requestId, string()],
-      uuid: [uuid, string()],
-      body: [body, optional(stopChargeSessionRequestBodyJsonSchema)],
+      sessionId: [sessionId, string()],
     });
     req.header('RequestId', mapped.requestId);
-    req.header('Content-Type', 'application/json');
-    req.json(mapped.body);
-    req.appendTemplatePath`/ev/v1/charge-session/stop/${mapped.uuid}`;
-    req.throwOn(400, M400ErrorResponseError1Error, 'Bad Request\n');
-    req.throwOn(401, M401ErrorResponseError1Error, 'Unauthorized');
-    req.throwOn(404, M404ErrorResponseError1Error, 'Session not found or Session has already been stopped. Map 410 Error message into 404.');
-    req.throwOn(405, M405ErrorResponseError1Error, 'Method Not Allowed');
-    req.throwOn(429, M429ErrorResponseError1Error, 'Too Many Requests');
-    req.throwOn(500, M500ErrorResponseError1Error, 'Internal Server Error');
-    req.throwOn(503, M503ErrorResponseError1Error, 'Returned when a connectivity failure is encountered like DB connection failed, endpoint failed etc or when max number of retries are completed\n');
+    req.query('sessionId', mapped.sessionId);
+    req.throwOn(
+      400,
+      BadRequestError,
+      'The server cannot or will not process the request due to something that is perceived to be a client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing).'
+    );
+    req.throwOn(
+      401,
+      UnauthorizedError,
+      'The request has not been applied because it lacks valid authentication credentials for the target resource.'
+    );
+    req.throwOn(404, NotFoundError, 'Location Not Found');
+    req.throwOn(
+      429,
+      TooManyRequestsError,
+      'The Request reached maximum allocated rate limit'
+    );
+    req.throwOn(500, InternalServerError, 'Internal Server error');
+    req.throwOn(503, ServiceunavailableError, 'Service unavailable');
     req.authenticate([{ bearerAuth: true }]);
     return req.callAsJson(inlineResponse2021Schema, requestOptions);
   }
 
   /**
-   * This API retrieves the status and details of the session which was started by the user. The session
-   * ID generated earlier needs to be passed in this API in order to retrieve the status.
+   * This endpoint returns the details of the session if the session is found.
    *
-   *
-   * @param requestId A unique request id in GUID format. The value is written to the Shell API Platform
-   *                            audit log for end to end traceability of a request.
-   * @param sessionId Session Id is to be fetched
-   * @param uuid      Unique session ID which was generated to activate a charging session.
+   * @param requestId RequestId must be unique identifier value that can be used by the consumer to
+   *                            correlate each request /response .<br>Format.<br> Its canonical textual representation,
+   *                            the 16 octets of a UUID are represented as 32 hexadecimal (base-16) digits, displayed
+   *                            in five groups separated by hyphens, in the form 8-4-4-4-12 for a total of 36
+   *                            characters (32 hexadecimal characters and 4 hyphens) <br>
+   * @param sessionId Session Id
    * @return Response from the API call
    */
   async getChargeSessionRetrieve(
     requestId: string,
     sessionId: string,
-    uuid: string,
     requestOptions?: RequestOptions
   ): Promise<ApiResponse<GetChargeSessionRetrieveResponse200Json>> {
-    const req = this.createRequest('GET');
+    const req = this.createRequest('GET', '/ev/v1/charge-session/retrieve');
     const mapped = req.prepareArgs({
       requestId: [requestId, string()],
       sessionId: [sessionId, string()],
-      uuid: [uuid, string()],
     });
     req.header('RequestId', mapped.requestId);
-    req.query('SessionId', mapped.sessionId);
-    req.appendTemplatePath`/ev/v1/charge-session/retrieve/${mapped.uuid}`;
-    req.throwOn(400, M400ErrorResponseError1Error, 'Bad Request');
-    req.throwOn(401, M401ErrorResponseError1Error, 'Unauthorized');
-    req.throwOn(404, M404ErrorResponseError1Error, 'Not Found');
-    req.throwOn(405, M405ErrorResponseError1Error, 'Method Not Allowed');
-    req.throwOn(429, M429ErrorResponseError1Error, 'Too Many Requests');
-    req.throwOn(500, M500ErrorResponseError1Error, 'Internal Server Error');
-    req.throwOn(503, M503ErrorResponseError1Error, 'Service Unavailable');
+    req.query('sessionId', mapped.sessionId);
+    req.throwOn(
+      400,
+      BadRequestError,
+      'The server cannot or will not process the request due to something that is perceived to be a client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing).'
+    );
+    req.throwOn(
+      401,
+      UnauthorizedError,
+      'The request has not been applied because it lacks valid authentication credentials for the target resource.'
+    );
+    req.throwOn(404, NotFoundError, 'Location Not Found');
+    req.throwOn(
+      429,
+      TooManyRequestsError,
+      'The Request reached maximum allocated rate limit'
+    );
+    req.throwOn(500, InternalServerError, 'Internal Server error');
+    req.throwOn(503, ServiceunavailableError, 'Service unavailable');
     req.authenticate([{ bearerAuth: true }]);
     return req.callAsJson(
       getChargeSessionRetrieveResponse200JsonSchema,
@@ -175,32 +177,28 @@ export class ChargingController extends BaseController {
   }
 
   /**
-   * This API retrieves the list of active sessions for a given set of EMAIds
+   * Fetrches the active sessions for user.
    *
+   * @param requestId RequestId must be unique identifier value that can be used by the consumer to
+   *                            correlate each request /response .<br>Format.<br> Its canonical textual representation,
+   *                            the 16 octets of a UUID are represented as 32 hexadecimal (base-16) digits, displayed
+   *                            in five groups separated by hyphens, in the form 8-4-4-4-12 for a total of 36
+   *                            characters (32 hexadecimal characters and 4 hyphens) <br>
    * @param emaId     Emobility Account Identifier(Ema-ID)
-   * @param requestId A unique request id in GUID format. The value is written to the Shell API Platform
-   *                            audit log for end to end traceability of a request.
    * @return Response from the API call
    */
   async active(
-    emaId: string,
     requestId: string,
+    emaId: string,
     requestOptions?: RequestOptions
   ): Promise<ApiResponse<ActiveResponse200Json>> {
     const req = this.createRequest('GET', '/ev/v1/charge-session/active');
     const mapped = req.prepareArgs({
-      emaId: [emaId, string()],
       requestId: [requestId, string()],
+      emaId: [emaId, string()],
     });
     req.header('RequestId', mapped.requestId);
-    req.query('EmaId', mapped.emaId);
-    req.throwOn(400, M400ErrorResponseError1Error, 'Bad Request\n');
-    req.throwOn(401, M401ErrorResponseError1Error, 'Unauthorized');
-    req.throwOn(404, M404ErrorResponseError1Error, 'Session not found or Session has already been stopped. Map 410 Error message into 404.');
-    req.throwOn(405, M405ErrorResponseError1Error, 'Method Not Allowed');
-    req.throwOn(429, M429ErrorResponseError1Error, 'Too Many Requests');
-    req.throwOn(500, M500ErrorResponseError1Error, 'Internal Server Error');
-    req.throwOn(503, M503ErrorResponseError1Error, 'Returned when a connectivity failure is encountered like DB connection failed, endpoint failed etc or when max number of retries are completed\n');
+    req.query('emaId', mapped.emaId);
     req.authenticate([{ bearerAuth: true }]);
     return req.callAsJson(activeResponse200JsonSchema, requestOptions);
   }

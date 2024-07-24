@@ -17,4 +17,6 @@ export enum GetChargeSessionRetrieveResponse200JsonStatusEnum {
 /**
  * Schema for GetChargeSessionRetrieveResponse200JsonStatusEnum
  */
-export const  getChargeSessionRetrieveResponse200JsonStatusEnumSchema: Schema<GetChargeSessionRetrieveResponse200JsonStatusEnum> = stringEnum(GetChargeSessionRetrieveResponse200JsonStatusEnum);
+export const getChargeSessionRetrieveResponse200JsonStatusEnumSchema: Schema<GetChargeSessionRetrieveResponse200JsonStatusEnum> = stringEnum(
+  GetChargeSessionRetrieveResponse200JsonStatusEnum
+);

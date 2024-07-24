@@ -11,10 +11,10 @@ Accessibility Status
 
 | Name |
 |  --- |
-| `freePublic` |
-| `payingPublic` |
-| `restricted` |
-| `unspecified` |
+| `FreePublic` |
+| `PayingPublic` |
+| `Restricted` |
+| `Unspecified` |
 
 ## Example
 

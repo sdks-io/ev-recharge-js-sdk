@@ -41,7 +41,7 @@ export interface ConnectorVO {
   fixedCable?: boolean;
   /** Tariff details for charging on this Connector */
   tariff?: TariffVO;
-  /** ISO8601-compliant UTC datetime of the last update of the Connectors's data */
+  /** ISO8601-compliant UTC datetime of the last update of the Connector’s data */
   updated?: string;
   /** Source of the last update */
   updatedBy?: ConnectorVOUpdatedByEnum;

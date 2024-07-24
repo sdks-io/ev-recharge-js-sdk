@@ -11,9 +11,9 @@ Power Type used in this connector.
 
 | Name |
 |  --- |
-| `aC1Phase` |
-| `aC3Phase` |
-| `dC` |
+| `AC1Phase` |
+| `AC3Phase` |
+| `DC` |
 
 ## Example
 

@@ -19,4 +19,6 @@ export enum ConnectorVOUpdatedByEnum {
 /**
  * Schema for ConnectorVOUpdatedByEnum
  */
-export const  connectorVOUpdatedByEnumSchema: Schema<ConnectorVOUpdatedByEnum> = stringEnum(ConnectorVOUpdatedByEnum);
+export const connectorVOUpdatedByEnumSchema: Schema<ConnectorVOUpdatedByEnum> = stringEnum(
+  ConnectorVOUpdatedByEnum
+);

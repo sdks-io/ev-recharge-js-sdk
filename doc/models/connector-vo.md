@@ -17,7 +17,7 @@ An EVSE can have one or many Connectors. Each Connector will normally have a dif
 | `electricalProperties` | [`ElectricalProperties \| undefined`](../../doc/models/electrical-properties.md) | Optional | Electrical Properties of the Connector |
 | `fixedCable` | `boolean \| undefined` | Optional | Indicates whether Connector has a fixed cable attached. False by default (not sent in this case) |
 | `tariff` | [`TariffVO \| undefined`](../../doc/models/tariff-vo.md) | Optional | Tariff details for charging on this Connector |
-| `updated` | `string \| undefined` | Optional | ISO8601-compliant UTC datetime of the last update of the Connectors's data |
+| `updated` | `string \| undefined` | Optional | ISO8601-compliant UTC datetime of the last update of the Connector’s data |
 | `updatedBy` | [`ConnectorVOUpdatedByEnum \| undefined`](../../doc/models/connector-vo-updated-by-enum.md) | Optional | Source of the last update |
 | `deleted` | `string \| undefined` | Optional | optional  ISO8601-compliant UTC deletion timestamp of the connector |
 

@@ -18,4 +18,6 @@ export enum SingleLocationMarkerAuthorizationMethodsItemsEnum {
 /**
  * Schema for SingleLocationMarkerAuthorizationMethodsItemsEnum
  */
-export const  singleLocationMarkerAuthorizationMethodsItemsEnumSchema: Schema<SingleLocationMarkerAuthorizationMethodsItemsEnum> = stringEnum(SingleLocationMarkerAuthorizationMethodsItemsEnum);
+export const singleLocationMarkerAuthorizationMethodsItemsEnumSchema: Schema<SingleLocationMarkerAuthorizationMethodsItemsEnum> = stringEnum(
+  SingleLocationMarkerAuthorizationMethodsItemsEnum
+);

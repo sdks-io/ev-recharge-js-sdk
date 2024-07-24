@@ -5,7 +5,6 @@ The following parameters are configurable for the API Client:
 
 | Parameter | Type | Description |
 |  --- | --- | --- |
-| `env` | `EnvEnum` | This variable specifies the type of environment. Environments:<br><br>* `api` - Production<br>* `api-test` - UAT<br>*Default*: `EnvEnum.EnumApitestshellcom` |
 | `environment` | `Environment` | The API environment. <br> **Default: `Environment.Production`** |
 | `timeout` | `number` | Timeout for API calls.<br>*Default*: `0` |
 | `httpClientOptions` | `Partial<HttpClientOptions>` | Stable configurable http client options. |
@@ -54,7 +53,7 @@ The gateway for the SDK. This class acts as a factory for the Controllers and al
 
 | Name | Description |
 |  --- | --- |
-| charging | Gets ChargingController |
 | locations | Gets LocationsController |
+| charging | Gets ChargingController |
 | oAuthAuthorization | Gets OAuthAuthorizationController |
 

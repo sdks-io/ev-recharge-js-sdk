@@ -18,6 +18,6 @@ export interface InlineResponse2021 {
 }
 
 export const inlineResponse2021Schema: Schema<InlineResponse2021> = object({
-  requestId: ['RequestId', string()],
-  status: ['Status', inlineResponse2021StatusEnumSchema],
+  requestId: ['requestId', string()],
+  status: ['status', inlineResponse2021StatusEnumSchema],
 });

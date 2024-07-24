@@ -17,4 +17,6 @@ export enum InlineResponse202StatusEnum {
 /**
  * Schema for InlineResponse202StatusEnum
  */
-export const  inlineResponse202StatusEnumSchema: Schema<InlineResponse202StatusEnum> = stringEnum(InlineResponse202StatusEnum);
+export const inlineResponse202StatusEnumSchema: Schema<InlineResponse202StatusEnum> = stringEnum(
+  InlineResponse202StatusEnum
+);

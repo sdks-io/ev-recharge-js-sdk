@@ -17,4 +17,6 @@ export enum ActiveResponse200JsonStatusEnum {
 /**
  * Schema for ActiveResponse200JsonStatusEnum
  */
-export const  activeResponse200JsonStatusEnumSchema: Schema<ActiveResponse200JsonStatusEnum> = stringEnum(ActiveResponse200JsonStatusEnum);
+export const activeResponse200JsonStatusEnumSchema: Schema<ActiveResponse200JsonStatusEnum> = stringEnum(
+  ActiveResponse200JsonStatusEnum
+);

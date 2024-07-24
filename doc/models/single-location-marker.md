@@ -11,7 +11,7 @@ A Marker is a place on the map that represent a single Location
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `markerType` | `string` | Required | Identifies the marker type. If it''s a `SingleLocationMarker`, then the value is `SingleLocation` |
+| `markerType` | `string` | Required | Identifies the marker type. If it’s a `SingleLocationMarker`, then the value is `SingleLocation` |
 | `uniqueKey` | `string \| undefined` | Optional | Uniquely identifies the marker object |
 | `status` | [`SingleLocationMarkerStatusEnum \| undefined`](../../doc/models/single-location-marker-status-enum.md) | Optional | Minimum of all status values in the Marker, e.g. if at least one Evse in the Marker is available, the value will be available |
 | `coordinates` | [`Coordinates \| undefined`](../../doc/models/coordinates.md) | Optional | Coordinates of the Shell Recharge Site Location |

@@ -12,7 +12,7 @@ import {
 import { DataActive, dataActiveSchema } from './dataActive';
 
 export interface ActiveResponse200Json {
-  /** A unique request id in GUID format. The value is written to the Shell API Platform audit log for end to end traceability of a request. */
+  /** Mandatory UUID (according to RFC 4122 standards) for requests and responses. This will be played back in the response from the request. */
   requestId: string;
   /** Indicates overall status of the request */
   status: ActiveResponse200JsonStatusEnum;
@@ -21,8 +21,8 @@ export interface ActiveResponse200Json {
 
 export const activeResponse200JsonSchema: Schema<ActiveResponse200Json> = object(
   {
-    requestId: ['RequestId', string()],
-    status: ['Status', activeResponse200JsonStatusEnumSchema],
-    data: ['Data', optional(array(lazy(() => dataActiveSchema)))],
+    requestId: ['requestId', string()],
+    status: ['status', activeResponse200JsonStatusEnumSchema],
+    data: ['data', optional(array(lazy(() => dataActiveSchema)))],
   }
 );

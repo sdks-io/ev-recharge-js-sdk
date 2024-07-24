@@ -12,7 +12,7 @@ import {
 } from './getChargeSessionRetrieveResponse200JsonStatusEnum';
 
 export interface GetChargeSessionRetrieveResponse200Json {
-  /** A unique request id in GUID format. The value is written to the Shell API Platform audit log for end to end traceability of a request. */
+  /** Mandatory UUID (according to RFC 4122 standards) for requests and responses. This will be played back in the response from the request. */
   requestId: string;
   /** Indicates overall status of the request */
   status: GetChargeSessionRetrieveResponse200JsonStatusEnum;
@@ -21,8 +21,8 @@ export interface GetChargeSessionRetrieveResponse200Json {
 
 export const getChargeSessionRetrieveResponse200JsonSchema: Schema<GetChargeSessionRetrieveResponse200Json> = object(
   {
-    requestId: ['RequestId', string()],
-    status: ['Status', getChargeSessionRetrieveResponse200JsonStatusEnumSchema],
-    data: ['Data', optional(array(lazy(() => dataRetrieveSchema)))],
+    requestId: ['requestId', string()],
+    status: ['status', getChargeSessionRetrieveResponse200JsonStatusEnumSchema],
+    data: ['data', optional(array(lazy(() => dataRetrieveSchema)))],
   }
 );

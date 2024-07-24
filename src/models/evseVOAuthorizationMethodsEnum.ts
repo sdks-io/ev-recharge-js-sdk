@@ -18,4 +18,6 @@ export enum EvseVOAuthorizationMethodsEnum {
 /**
  * Schema for EvseVOAuthorizationMethodsEnum
  */
-export const  evseVOAuthorizationMethodsEnumSchema: Schema<EvseVOAuthorizationMethodsEnum> = stringEnum(EvseVOAuthorizationMethodsEnum);
+export const evseVOAuthorizationMethodsEnumSchema: Schema<EvseVOAuthorizationMethodsEnum> = stringEnum(
+  EvseVOAuthorizationMethodsEnum
+);

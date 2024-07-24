@@ -19,4 +19,6 @@ export enum EvseVOStatusEnum {
 /**
  * Schema for EvseVOStatusEnum
  */
-export const  evseVOStatusEnumSchema: Schema<EvseVOStatusEnum> = stringEnum(EvseVOStatusEnum);
+export const evseVOStatusEnumSchema: Schema<EvseVOStatusEnum> = stringEnum(
+  EvseVOStatusEnum
+);

@@ -33,4 +33,6 @@ export enum ConnectorVOConnectorTypeEnum {
 /**
  * Schema for ConnectorVOConnectorTypeEnum
  */
-export const  connectorVOConnectorTypeEnumSchema: Schema<ConnectorVOConnectorTypeEnum> = stringEnum(ConnectorVOConnectorTypeEnum);
+export const connectorVOConnectorTypeEnumSchema: Schema<ConnectorVOConnectorTypeEnum> = stringEnum(
+  ConnectorVOConnectorTypeEnum
+);

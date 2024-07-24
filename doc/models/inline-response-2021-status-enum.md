@@ -11,8 +11,8 @@ Indicates overall status of the request
 
 | Name |
 |  --- |
-| `sUCCESS` |
-| `fAILED` |
+| `SUCCESS` |
+| `FAILED` |
 
 ## Example
 

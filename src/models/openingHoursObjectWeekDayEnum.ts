@@ -22,4 +22,6 @@ export enum OpeningHoursObjectWeekDayEnum {
 /**
  * Schema for OpeningHoursObjectWeekDayEnum
  */
-export const  openingHoursObjectWeekDayEnumSchema: Schema<OpeningHoursObjectWeekDayEnum> = stringEnum(OpeningHoursObjectWeekDayEnum);
+export const openingHoursObjectWeekDayEnumSchema: Schema<OpeningHoursObjectWeekDayEnum> = stringEnum(
+  OpeningHoursObjectWeekDayEnum
+);

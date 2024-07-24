@@ -11,8 +11,14 @@ The current status of the EVSE units availability
 
 | Name |
 |  --- |
-| `available` |
-| `occupied` |
-| `unavailable` |
-| `unknown` |
+| `Available` |
+| `Occupied` |
+| `Unavailable` |
+| `Unknown` |
+
+## Example
+
+```
+Available
+```
 

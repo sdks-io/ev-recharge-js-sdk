@@ -5,60 +5,60 @@
  */
 
 import { ApiResponse, RequestOptions } from '../core';
-import { BadRequestError } from '../errors/badRequestError';
-import { NotFoundError } from '../errors/notFoundError';
-import { UnauthorizedError } from '../errors/unauthorizedError';
 import {
-  MarkersResponse,
-  markersResponseSchema,
-} from '../models/containers/markersResponse';
+  GetEVLocationsAuthorizationMethodsEnum,
+  getEVLocationsAuthorizationMethodsEnumSchema,
+} from '../models/getEVLocationsAuthorizationMethodsEnum';
 import {
-  GetLocationsListAuthorizationMethodsEnum,
-  getLocationsListAuthorizationMethodsEnumSchema,
-} from '../models/getLocationsListAuthorizationMethodsEnum';
+  GetEVLocationsConnectorTypesEnum,
+  getEVLocationsConnectorTypesEnumSchema,
+} from '../models/getEVLocationsConnectorTypesEnum';
 import {
-  GetLocationsListConnectorTypesEnum,
-  getLocationsListConnectorTypesEnumSchema,
-} from '../models/getLocationsListConnectorTypesEnum';
+  GetEVLocationsEvseStatusEnum,
+  getEVLocationsEvseStatusEnumSchema,
+} from '../models/getEVLocationsEvseStatusEnum';
 import {
-  GetLocationsListEvseStatusEnum,
-  getLocationsListEvseStatusEnumSchema,
-} from '../models/getLocationsListEvseStatusEnum';
+  LocationsMarkersAuthorizationMethodsEnum,
+  locationsMarkersAuthorizationMethodsEnumSchema,
+} from '../models/locationsMarkersAuthorizationMethodsEnum';
 import {
-  GetMarkersListAuthorizationMethodsEnum,
-  getMarkersListAuthorizationMethodsEnumSchema,
-} from '../models/getMarkersListAuthorizationMethodsEnum';
+  LocationsMarkersConnectorTypesEnum,
+  locationsMarkersConnectorTypesEnumSchema,
+} from '../models/locationsMarkersConnectorTypesEnum';
 import {
-  GetMarkersListConnectorTypesEnum,
-  getMarkersListConnectorTypesEnumSchema,
-} from '../models/getMarkersListConnectorTypesEnum';
+  LocationsMarkersEvseStatusEnum,
+  locationsMarkersEvseStatusEnumSchema,
+} from '../models/locationsMarkersEvseStatusEnum';
 import {
-  GetMarkersListEvseStatusEnum,
-  getMarkersListEvseStatusEnumSchema,
-} from '../models/getMarkersListEvseStatusEnum';
+  NearbyLocationsAuthorizationMethodsEnum,
+  nearbyLocationsAuthorizationMethodsEnumSchema,
+} from '../models/nearbyLocationsAuthorizationMethodsEnum';
 import {
-  GetNearbyLocationsAuthorizationMethodsEnum,
-  getNearbyLocationsAuthorizationMethodsEnumSchema,
-} from '../models/getNearbyLocationsAuthorizationMethodsEnum';
+  NearbyLocationsConnectorTypesEnum,
+  nearbyLocationsConnectorTypesEnumSchema,
+} from '../models/nearbyLocationsConnectorTypesEnum';
 import {
-  GetNearbyLocationsConnectorTypesEnum,
-  getNearbyLocationsConnectorTypesEnumSchema,
-} from '../models/getNearbyLocationsConnectorTypesEnum';
+  NearbyLocationsEvseStatusEnum,
+  nearbyLocationsEvseStatusEnumSchema,
+} from '../models/nearbyLocationsEvseStatusEnum';
+import { Response, responseSchema } from '../models/response';
 import {
-  GetNearbyLocationsEvseStatusEnum,
-  getNearbyLocationsEvseStatusEnumSchema,
-} from '../models/getNearbyLocationsEvseStatusEnum';
-import {
-  LocationResponeObject,
-  locationResponeObjectSchema,
-} from '../models/locationResponeObject';
+  SingleLocationMarkerResponse,
+  singleLocationMarkerResponseSchema,
+} from '../models/singleLocationMarkerResponse';
 import { array, boolean, number, optional, string } from '../schema';
 import { BaseController } from './baseController';
+import { BadRequestError } from '../errors/badRequestError';
+import { InternalServerError } from '../errors/internalServerError';
+import { NotFoundError } from '../errors/notFoundError';
+import { ServiceunavailableError } from '../errors/serviceunavailableError';
+import { TooManyRequestsError } from '../errors/tooManyRequestsError';
+import { UnauthorizedError } from '../errors/unauthorizedError';
 
 export class LocationsController extends BaseController {
   /**
    * This API provides the list of all Shell Recharge locations. The list includes all Shell Recharge
-   * network and all locations available through our roaming partners.The end point provides flexible
+   * network and all locations available through our roaming partners. The end point provides flexible
    * search criteria in order to get the list of Shell Recharge Network. The end point provides the
    * details such as the exact location/address of the site along with the up-to-date status information
    * of all the charging units in the site.
@@ -70,44 +70,55 @@ export class LocationsController extends BaseController {
    * * Based on minimum Power output (in kW) available
    * * Based on a specific charging unit ID (EVSE ID)
    *
-   * @param requestId            A unique request id in GUID format. The
-   *                                                                         value is written to the Shell API Platform
-   *                                                                         audit log for end to end traceability of a
-   *                                                                         request.
+   * @param requestId            RequestId must be unique identifier value
+   *                                                                       that can be used by the consumer to
+   *                                                                       correlate each request /response .<br>Format.
+   *                                                                       <br> Its canonical textual representation,
+   *                                                                       the 16 octets of a UUID are represented as
+   *                                                                       32 hexadecimal (base-16) digits, displayed
+   *                                                                       in five groups separated by hyphens, in the
+   *                                                                       form 8-4-4-4-12 for a total of 36 characters
+   *                                                                       (32 hexadecimal characters and 4 hyphens)
+   *                                                                       <br>
    * @param evseStatus           Filter by Locations that have the given
-   *                                                                         status
+   *                                                                       status
    * @param connectorTypes       Filter by Locations that have Connectors
-   *                                                                         with the set of Connector Types
+   *                                                                       with the set of Connector Types
    * @param connectorMinPower    Filter by Locations that have a Connector
-   *                                                                         with at least this power output (in kW)
-   * @param authorizationMethods Filter by Locations that support the
-   *                                                                         given Authorization Methods
+   *                                                                       with at least this power output (in kW)
+   * @param authorizationMethods Filter by Locations that support the given
+   *                                                                       Authorization Methods
    * @param withOperatorName     Return operator name in marker response
-   *                                                                         object
+   *                                                                       object
    * @param evseId               optional Standard EVSE (Electric Vehicle
-   *                                                                         Supply Equipment) Id identifier (ISO-IEC-
-   *                                                                         15118)
+   *                                                                       Supply Equipment) Id identifier (ISO-IEC-
+   *                                                                       15118)
    * @param locationExternalId   Filter by Locations with the given
-   *                                                                         externalId. (Unique Location externalID
-   *                                                                         provided by Shell Recharge)
-   * @param evseExternalId       Filter by Locations that have an Evse
-   *                                                                         with the given External Id. (Unique
-   *                                                                         individual EVSE externalID provided by
-   *                                                                         Shell Recharge)
+   *                                                                       externalId. (Unique Location externalID
+   *                                                                       provided by Shell Recharge)
+   * @param evseExternalId       Filter by Locations that have an Evse with
+   *                                                                       the given External Id. (Unique individual
+   *                                                                       EVSE externalID provided by Shell Recharge)
    * @param pageNumber           Restrict the response list by providing a
-   *                                                                         specific set of page Number. Set perPage
-   *                                                                         parameter also when pageNumber is used.
-   * @param perPage              Restrict the number of sites in reposne
-   *                                                                         per page.
+   *                                                                       specific set of page Number. Set perPage
+   *                                                                       parameter also when page Number is used.
+   * @param perPage              Restrict the number of sites in response
+   *                                                                       per page.
    * @param updatedSince         ZonedDateTime as string
+   * @param country              Filter by Locations that are at least in
+   *                                                                       one of the given countries (specified using
+   *                                                                       ISO 3166-1 alpha-3 codes)
+   * @param excludeCountry       Filter by Locations that are not in one of
+   *                                                                       the given countries (specified using ISO
+   *                                                                       3166-1 alpha-3 codes)
    * @return Response from the API call
    */
-  async getLocationsList(
+  async getEVLocations(
     requestId: string,
-    evseStatus?: GetLocationsListEvseStatusEnum,
-    connectorTypes?: GetLocationsListConnectorTypesEnum,
+    evseStatus?: GetEVLocationsEvseStatusEnum,
+    connectorTypes?: GetEVLocationsConnectorTypesEnum,
     connectorMinPower?: number,
-    authorizationMethods?: GetLocationsListAuthorizationMethodsEnum,
+    authorizationMethods?: GetEVLocationsAuthorizationMethodsEnum,
     withOperatorName?: boolean,
     evseId?: string,
     locationExternalId?: string,
@@ -115,20 +126,22 @@ export class LocationsController extends BaseController {
     pageNumber?: number,
     perPage?: number,
     updatedSince?: string,
+    country?: string[],
+    excludeCountry?: string[],
     requestOptions?: RequestOptions
-  ): Promise<ApiResponse<LocationResponeObject[]>> {
+  ): Promise<ApiResponse<Response>> {
     const req = this.createRequest('GET', '/locations/v1/ev');
     const mapped = req.prepareArgs({
       requestId: [requestId, string()],
-      evseStatus: [evseStatus, optional(getLocationsListEvseStatusEnumSchema)],
+      evseStatus: [evseStatus, optional(getEVLocationsEvseStatusEnumSchema)],
       connectorTypes: [
         connectorTypes,
-        optional(getLocationsListConnectorTypesEnumSchema),
+        optional(getEVLocationsConnectorTypesEnumSchema),
       ],
       connectorMinPower: [connectorMinPower, optional(number())],
       authorizationMethods: [
         authorizationMethods,
-        optional(getLocationsListAuthorizationMethodsEnumSchema),
+        optional(getEVLocationsAuthorizationMethodsEnumSchema),
       ],
       withOperatorName: [withOperatorName, optional(boolean())],
       evseId: [evseId, optional(string())],
@@ -137,6 +150,8 @@ export class LocationsController extends BaseController {
       pageNumber: [pageNumber, optional(number())],
       perPage: [perPage, optional(number())],
       updatedSince: [updatedSince, optional(string())],
+      country: [country, optional(array(string()))],
+      excludeCountry: [excludeCountry, optional(array(string()))],
     });
     req.header('RequestId', mapped.requestId);
     req.query('evseStatus', mapped.evseStatus);
@@ -150,11 +165,28 @@ export class LocationsController extends BaseController {
     req.query('pageNumber', mapped.pageNumber);
     req.query('perPage', mapped.perPage);
     req.query('updatedSince', mapped.updatedSince);
-    req.throwOn(400, BadRequestError, 'The server cannot or will not process the request due to something that is perceived to be a client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing).');
-    req.throwOn(401, UnauthorizedError, 'The request has not been applied because it lacks valid authentication credentials for the target resource.');
+    req.query('country', mapped.country);
+    req.query('excludeCountry', mapped.excludeCountry);
+    req.throwOn(
+      400,
+      BadRequestError,
+      'The server cannot or will not process the request due to something that is perceived to be a client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing).'
+    );
+    req.throwOn(
+      401,
+      UnauthorizedError,
+      'The request has not been applied because it lacks valid authentication credentials for the target resource.'
+    );
     req.throwOn(404, NotFoundError, 'Location Not Found');
+    req.throwOn(
+      429,
+      TooManyRequestsError,
+      'The Request reached maximum allocated rate limit'
+    );
+    req.throwOn(500, InternalServerError, 'Internal Server error');
+    req.throwOn(503, ServiceunavailableError, 'Service unavailable');
     req.authenticate([{ bearerAuth: true }]);
-    return req.callAsJson(array(locationResponeObjectSchema), requestOptions);
+    return req.callAsJson(responseSchema, requestOptions);
   }
 
   /**
@@ -162,32 +194,58 @@ export class LocationsController extends BaseController {
    * The query for a single location is to be made using the Unique Internal identifier used to refer to
    * this Location by Shell Recharge. (Uid from List of locations API)
    *
-   * @param requestId A unique request id in GUID format. The value is written to the Shell API Platform
-   *                            audit log for end to end traceability of a request.
-   * @param id        Unique Uid of the location from List of locations API
+   * @param requestId  RequestId must be unique identifier value that can be used by the consumer to
+   *                             correlate each request /response .<br>Format.<br> Its canonical textual representation,
+   *                             the 16 octets of a UUID are represented as 32 hexadecimal (base-16) digits, displayed
+   *                             in five groups separated by hyphens, in the form 8-4-4-4-12 for a total of 36
+   *                             characters (32 hexadecimal characters and 4 hyphens) <br>
+   * @param id         Unique Uid of the location from List of locations API
+   * @param providerId The provider id that you wish to see locations and tariffs for
+   * @param since      to get the locations modified after a date
    * @return Response from the API call
    */
-  async getLocationById(
+  async evLocationsByID(
     requestId: string,
     id: string,
+    providerId?: string,
+    since?: string,
     requestOptions?: RequestOptions
-  ): Promise<ApiResponse<LocationResponeObject>> {
+  ): Promise<ApiResponse<Response>> {
     const req = this.createRequest('GET');
     const mapped = req.prepareArgs({
       requestId: [requestId, string()],
       id: [id, string()],
+      providerId: [providerId, optional(string())],
+      since: [since, optional(string())],
     });
     req.header('RequestId', mapped.requestId);
+    req.query('providerId', mapped.providerId);
+    req.query('since', mapped.since);
     req.appendTemplatePath`/locations/v1/ev/${mapped.id}`;
-    req.throwOn(400, BadRequestError, 'The server cannot or will not process the request due to something that is perceived to be a client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing).');
-    req.throwOn(401, UnauthorizedError, 'The request has not been applied because it lacks valid authentication credentials for the target resource.');
+    req.throwOn(
+      400,
+      BadRequestError,
+      'The server cannot or will not process the request due to something that is perceived to be a client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing).'
+    );
+    req.throwOn(
+      401,
+      UnauthorizedError,
+      'The request has not been applied because it lacks valid authentication credentials for the target resource.'
+    );
     req.throwOn(404, NotFoundError, 'Location Not Found');
+    req.throwOn(
+      429,
+      TooManyRequestsError,
+      'The Request reached maximum allocated rate limit'
+    );
+    req.throwOn(500, InternalServerError, 'Internal Server error');
+    req.throwOn(503, ServiceunavailableError, 'Service unavailable');
     req.authenticate([{ bearerAuth: true }]);
-    return req.callAsJson(locationResponeObjectSchema, requestOptions);
+    return req.callAsJson(responseSchema, requestOptions);
   }
 
   /**
-   * This API provides the list of all near by Shell Recharge locations based on the latitude and
+   * This API provides the list of all nearby Shell Recharge locations based on the latitude and
    * longitude provided in the request.
    * The list includes all Shell Recharge network and all sites available through our roaming partners.
    * The end point provides the details such as the exact location/address of the site along with the up-
@@ -200,46 +258,55 @@ export class LocationsController extends BaseController {
    * * Based on available connector types.
    * * Based on minimum Power output (in kW) available
    *
-   * @param requestId            A unique request id in GUID format. The
-   *                                                                           value is written to the Shell API
-   *                                                                           Platform audit log for end to end
-   *                                                                           traceability of a request.
-   * @param latitude             Latitude to get Shell Recharge
-   *                                                                           Locations nearby
-   * @param longitude            Longitude to get Shell Recharge
-   *                                                                           Locations nearby
-   * @param limit                Maximum number of Locations to
-   *                                                                           retrieve
+   * @param requestId            RequestId must be unique identifier value
+   *                                                                        that can be used by the consumer to
+   *                                                                        correlate each request /response .
+   *                                                                        <br>Format.<br> Its canonical textual
+   *                                                                        representation, the 16 octets of a UUID are
+   *                                                                        represented as 32 hexadecimal (base-16)
+   *                                                                        digits, displayed in five groups separated
+   *                                                                        by hyphens, in the form 8-4-4-4-12 for a
+   *                                                                        total of 36 characters (32 hexadecimal
+   *                                                                        characters and 4 hyphens) <br>
+   * @param latitude             Latitude to get Shell Recharge Locations
+   *                                                                        nearby
+   * @param longitude            Longitude to get Shell Recharge Locations
+   *                                                                        nearby
+   * @param limit                Maximum number of Locations to retrieve
    * @param locationExternalId   Filter by Locations with the given
-   *                                                                           externalId Identifier as given by the
-   *                                                                           Shell Recharge Operator, unique for that
-   *                                                                           Operator
-   * @param evseId               Filter by Locations that have an Evse
-   *                                                                           with the given Evse Id
-   * @param evseExternalId       Filter by Locations that have an Evse
-   *                                                                           with the given External Id Identifier of
-   *                                                                           the Evse as given by the Operator,
-   *                                                                           unique for that Operator
+   *                                                                        externalId Identifier as given by the Shell
+   *                                                                        Recharge Operator, unique for that
+   *                                                                        Operator
+   * @param evseId               Filter by Locations that have an Evse with
+   *                                                                        the given Evse Id
+   * @param evseExternalId       Filter by Locations that have an Evse with
+   *                                                                        the given External Id Identifier of the
+   *                                                                        Evse as given by the Operator, unique for
+   *                                                                        that Operator
    * @param operatorName         Filter by Locations that have the given
-   *                                                                           operator
+   *                                                                        operator
    * @param evseStatus           Filter by Locations that have the given
-   *                                                                           status
-   * @param connectorTypes       Filter by Locations that have
-   *                                                                           Connectors with these Connector Types
-   * @param connectorMinPower    Filter by Locations that have a
-   *                                                                           Connector with at least this power
-   *                                                                           output (in kW)
-   * @param authorizationMethods Filter by Locations that support the
-   *                                                                           given Authorization Methods
+   *                                                                        status
+   * @param connectorTypes       Filter by Locations that have Connectors
+   *                                                                        with these Connector Types
+   * @param connectorMinPower    Filter by Locations that have a Connector
+   *                                                                        with at least this power output (in kW)
+   * @param authorizationMethods Filter by Locations that support the given
+   *                                                                        Authorization Methods
    * @param withOperatorName     Return operator name in marker object
-   *                                                                           (only for marker type
-   *                                                                           SingleChargePoint)
+   *                                                                        (only for marker type Single ChargePoint)
    * @param withMaxPower         Return maximum power in kW across all
-   *                                                                           locations grouped in this marker
-   *                                                                           (disregarding availability)
+   *                                                                        locations grouped in this marker
+   *                                                                        (disregarding availability)
+   * @param country              Filter by Locations that are at least in
+   *                                                                        one of the given countries (specified using
+   *                                                                        ISO 3166-1 alpha-3 codes)
+   * @param excludeCountry       Filter by Locations that are not in one of
+   *                                                                        the given countries (specified using ISO
+   *                                                                        3166-1 alpha-3 codes)
    * @return Response from the API call
    */
-  async getNearbyLocations(
+  async nearbyLocations(
     requestId: string,
     latitude: number,
     longitude: number,
@@ -248,14 +315,16 @@ export class LocationsController extends BaseController {
     evseId?: string,
     evseExternalId?: string,
     operatorName?: string,
-    evseStatus?: GetNearbyLocationsEvseStatusEnum,
-    connectorTypes?: GetNearbyLocationsConnectorTypesEnum,
+    evseStatus?: NearbyLocationsEvseStatusEnum,
+    connectorTypes?: NearbyLocationsConnectorTypesEnum,
     connectorMinPower?: number,
-    authorizationMethods?: GetNearbyLocationsAuthorizationMethodsEnum,
+    authorizationMethods?: NearbyLocationsAuthorizationMethodsEnum,
     withOperatorName?: boolean,
     withMaxPower?: boolean,
+    country?: string[],
+    excludeCountry?: string[],
     requestOptions?: RequestOptions
-  ): Promise<ApiResponse<LocationResponeObject>> {
+  ): Promise<ApiResponse<Response>> {
     const req = this.createRequest('GET', '/locations/v1/ev/nearby');
     const mapped = req.prepareArgs({
       requestId: [requestId, string()],
@@ -266,21 +335,20 @@ export class LocationsController extends BaseController {
       evseId: [evseId, optional(string())],
       evseExternalId: [evseExternalId, optional(string())],
       operatorName: [operatorName, optional(string())],
-      evseStatus: [
-        evseStatus,
-        optional(getNearbyLocationsEvseStatusEnumSchema),
-      ],
+      evseStatus: [evseStatus, optional(nearbyLocationsEvseStatusEnumSchema)],
       connectorTypes: [
         connectorTypes,
-        optional(getNearbyLocationsConnectorTypesEnumSchema),
+        optional(nearbyLocationsConnectorTypesEnumSchema),
       ],
       connectorMinPower: [connectorMinPower, optional(number())],
       authorizationMethods: [
         authorizationMethods,
-        optional(getNearbyLocationsAuthorizationMethodsEnumSchema),
+        optional(nearbyLocationsAuthorizationMethodsEnumSchema),
       ],
       withOperatorName: [withOperatorName, optional(boolean())],
       withMaxPower: [withMaxPower, optional(boolean())],
+      country: [country, optional(array(string()))],
+      excludeCountry: [excludeCountry, optional(array(string()))],
     });
     req.header('RequestId', mapped.requestId);
     req.query('latitude', mapped.latitude);
@@ -296,11 +364,28 @@ export class LocationsController extends BaseController {
     req.query('authorizationMethods', mapped.authorizationMethods);
     req.query('withOperatorName', mapped.withOperatorName);
     req.query('withMaxPower', mapped.withMaxPower);
-    req.throwOn(400, BadRequestError, 'The server cannot or will not process the request due to something that is perceived to be a client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing).');
-    req.throwOn(401, UnauthorizedError, 'The request has not been applied because it lacks valid authentication credentials for the target resource.');
+    req.query('country', mapped.country);
+    req.query('excludeCountry', mapped.excludeCountry);
+    req.throwOn(
+      400,
+      BadRequestError,
+      'The server cannot or will not process the request due to something that is perceived to be a client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing).'
+    );
+    req.throwOn(
+      401,
+      UnauthorizedError,
+      'The request has not been applied because it lacks valid authentication credentials for the target resource.'
+    );
     req.throwOn(404, NotFoundError, 'Location Not Found');
+    req.throwOn(
+      429,
+      TooManyRequestsError,
+      'The Request reached maximum allocated rate limit'
+    );
+    req.throwOn(500, InternalServerError, 'Internal Server error');
+    req.throwOn(503, ServiceunavailableError, 'Service unavailable');
     req.authenticate([{ bearerAuth: true }]);
-    return req.callAsJson(locationResponeObjectSchema, requestOptions);
+    return req.callAsJson(responseSchema, requestOptions);
   }
 
   /**
@@ -314,66 +399,81 @@ export class LocationsController extends BaseController {
    * * Based on available connector types.
    * * Based on minimum Power output (in kW) available
    *
-   * @param requestId            A unique request id in GUID format. The
-   *                                                                       value is written to the Shell API Platform
-   *                                                                       audit log for end to end traceability of a
-   *                                                                       request.
+   * @param requestId            RequestId must be unique identifier value
+   *                                                                         that can be used by the consumer to
+   *                                                                         correlate each request /response .
+   *                                                                         <br>Format.<br> Its canonical textual
+   *                                                                         representation, the 16 octets of a UUID
+   *                                                                         are represented as 32 hexadecimal (base-
+   *                                                                         16) digits, displayed in five groups
+   *                                                                         separated by hyphens, in the form 8-4-4-4-
+   *                                                                         12 for a total of 36 characters (32
+   *                                                                         hexadecimal characters and 4 hyphens)
+   *                                                                         <br>
    * @param west                 Longitude of the western bound to get the
-   *                                                                       Shell Recharge Locations
+   *                                                                         Shell Recharge Locations
    * @param south                Latitude of the southern bound to get the
-   *                                                                       Shell Recharge Locations
+   *                                                                         Shell Recharge Locations
    * @param east                 Longitude of the eastern bound to get the
-   *                                                                       Shell Recharge Locations
+   *                                                                         Shell Recharge Locations
    * @param north                Latitude of the northern bound to get the
-   *                                                                       Shell Recharge Locations
+   *                                                                         Shell Recharge Locations
    * @param zoom                 Zoom level to show ex: (1: World, 5:
-   *                                                                       Landmass/continent, 10: City, 15: Streets,
-   *                                                                       20: Buildings)
+   *                                                                         Landmass/continent, 10: City, 15: Streets,
+   *                                                                         20: Buildings)
    * @param evseStatus           Filter by Locations that have the given
-   *                                                                       status
+   *                                                                         status
    * @param connectorTypes       Filter by Locations that have Connectors
-   *                                                                       with the set of Connector Types
+   *                                                                         with the set of Connector Types
    * @param connectorMinPower    Filter by Locations that have a Connector
-   *                                                                       with at least this power output (in kW)
-   * @param authorizationMethods Filter by Locations that support the given
-   *                                                                       Authorization Methods
-   * @param withOperatorName     Return operator name in marker object (only
-   *                                                                       for marker type SingleChargePoint)
+   *                                                                         with at least this power output (in kW)
+   * @param authorizationMethods Filter by Locations that support the
+   *                                                                         given Authorization Methods
+   * @param withOperatorName     Return operator name in marker object
+   *                                                                         (only for marker type SingleChargePoint)
    * @param withMaxPower         Return maximum power in kW across all
-   *                                                                       locations grouped in this marker
-   *                                                                       (disregarding availability)
+   *                                                                         locations grouped in this marker
+   *                                                                         (disregarding availability)
    * @param locationExternalId   Filter by Locations with the given
-   *                                                                       externalId. (Unique Location externalID
-   *                                                                       provided by Shell Recharge)
-   * @param evseId               Filter by Locations that have an Evse with
-   *                                                                       the given Evse Id
-   * @param evseExternalId       Filter by Locations that have an Evse with
-   *                                                                       the given External Id Identifier of the Evse
-   *                                                                       as given by the Operator, unique for that
-   *                                                                       Operator
+   *                                                                         externalId. (Unique Location externalID
+   *                                                                         provided by Shell Recharge)
+   * @param evseId               Filter by Locations that have an Evse
+   *                                                                         with the given Evse Id
+   * @param evseExternalId       Filter by Locations that have an Evse
+   *                                                                         with the given External Id Identifier of
+   *                                                                         the Evse as given by the Operator, unique
+   *                                                                         for that Operator
    * @param operatorName         Filter by Locations that have the given
-   *                                                                       operator
+   *                                                                         operator
+   * @param country              Filter by Locations that are at least in
+   *                                                                         one of the given countries (specified
+   *                                                                         using ISO 3166-1 alpha-3 codes)
+   * @param excludeCountry       Filter by Locations that are not in one
+   *                                                                         of the given countries (specified using
+   *                                                                         ISO 3166-1 alpha-3 codes)
    * @return Response from the API call
    */
-  async getMarkersList(
+  async locationsMarkers(
     requestId: string,
     west: number,
     south: number,
     east: number,
     north: number,
     zoom: string,
-    evseStatus?: GetMarkersListEvseStatusEnum,
-    connectorTypes?: GetMarkersListConnectorTypesEnum,
+    evseStatus?: LocationsMarkersEvseStatusEnum,
+    connectorTypes?: LocationsMarkersConnectorTypesEnum,
     connectorMinPower?: number,
-    authorizationMethods?: GetMarkersListAuthorizationMethodsEnum,
+    authorizationMethods?: LocationsMarkersAuthorizationMethodsEnum,
     withOperatorName?: boolean,
     withMaxPower?: boolean,
     locationExternalId?: string,
     evseId?: string,
     evseExternalId?: string,
     operatorName?: string,
+    country?: string[],
+    excludeCountry?: string[],
     requestOptions?: RequestOptions
-  ): Promise<ApiResponse<MarkersResponse[]>> {
+  ): Promise<ApiResponse<SingleLocationMarkerResponse>> {
     const req = this.createRequest('GET', '/locations/v1/ev/markers');
     const mapped = req.prepareArgs({
       requestId: [requestId, string()],
@@ -382,15 +482,15 @@ export class LocationsController extends BaseController {
       east: [east, number()],
       north: [north, number()],
       zoom: [zoom, string()],
-      evseStatus: [evseStatus, optional(getMarkersListEvseStatusEnumSchema)],
+      evseStatus: [evseStatus, optional(locationsMarkersEvseStatusEnumSchema)],
       connectorTypes: [
         connectorTypes,
-        optional(getMarkersListConnectorTypesEnumSchema),
+        optional(locationsMarkersConnectorTypesEnumSchema),
       ],
       connectorMinPower: [connectorMinPower, optional(number())],
       authorizationMethods: [
         authorizationMethods,
-        optional(getMarkersListAuthorizationMethodsEnumSchema),
+        optional(locationsMarkersAuthorizationMethodsEnumSchema),
       ],
       withOperatorName: [withOperatorName, optional(boolean())],
       withMaxPower: [withMaxPower, optional(boolean())],
@@ -398,6 +498,8 @@ export class LocationsController extends BaseController {
       evseId: [evseId, optional(string())],
       evseExternalId: [evseExternalId, optional(string())],
       operatorName: [operatorName, optional(string())],
+      country: [country, optional(array(string()))],
+      excludeCountry: [excludeCountry, optional(array(string()))],
     });
     req.header('RequestId', mapped.requestId);
     req.query('west', mapped.west);
@@ -415,10 +517,27 @@ export class LocationsController extends BaseController {
     req.query('evseId', mapped.evseId);
     req.query('evseExternalId', mapped.evseExternalId);
     req.query('operatorName', mapped.operatorName);
-    req.throwOn(400, BadRequestError, 'The server cannot or will not process the request due to something that is perceived to be a client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing).');
-    req.throwOn(401, UnauthorizedError, 'The request has not been applied because it lacks valid authentication credentials for the target resource.');
+    req.query('country', mapped.country);
+    req.query('excludeCountry', mapped.excludeCountry);
+    req.throwOn(
+      400,
+      BadRequestError,
+      'The server cannot or will not process the request due to something that is perceived to be a client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing).'
+    );
+    req.throwOn(
+      401,
+      UnauthorizedError,
+      'The request has not been applied because it lacks valid authentication credentials for the target resource.'
+    );
     req.throwOn(404, NotFoundError, 'Location Not Found');
+    req.throwOn(
+      429,
+      TooManyRequestsError,
+      'The Request reached maximum allocated rate limit'
+    );
+    req.throwOn(500, InternalServerError, 'Internal server error');
+    req.throwOn(503, ServiceunavailableError, 'Service unavailable');
     req.authenticate([{ bearerAuth: true }]);
-    return req.callAsJson(array(markersResponseSchema), requestOptions);
+    return req.callAsJson(singleLocationMarkerResponseSchema, requestOptions);
   }
 }

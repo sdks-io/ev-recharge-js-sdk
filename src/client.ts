@@ -19,7 +19,6 @@ import {
   DEFAULT_RETRY_CONFIG,
 } from './defaultConfiguration';
 import { ApiError } from './core';
-import { pathTemplate, SkipEncode } from './core';
 import {
   AbortError,
   AuthenticatorInterface,
@@ -27,7 +26,7 @@ import {
   HttpClientInterface,
   RetryConfiguration,
 } from './core';
- import { HttpClient } from './clientAdapter';
+import { HttpClient } from './clientAdapter';
 
 const USER_AGENT = 'APIMATIC 3.0';
 
@@ -51,18 +50,20 @@ export class Client implements ClientInterface {
       typeof this._config.httpClientOptions?.timeout != 'undefined'
         ? this._config.httpClientOptions.timeout
         : this._config.timeout;
-    let clonedConfig = {
+    const clonedConfig = {
       ...this._config,
-      clientCredentialsAuthCredentials: this._config.clientCredentialsAuthCredentials || {
-        oAuthClientId: '', 
-        oAuthClientSecret: '', 
-      }
-    }
+      clientCredentialsAuthCredentials: this._config
+        .clientCredentialsAuthCredentials || {
+        oAuthClientId: this._config.oAuthClientId || '',
+        oAuthClientSecret: this._config.oAuthClientSecret || '',
+        oAuthToken: this._config.oAuthToken,
+      },
+    };
 
     this._requestBuilderFactory = createRequestHandlerFactory(
-      server => getBaseUri(server, this._config),
+      (server) => getBaseUri(server, this._config),
       createAuthProviderFromConfig(
-        this._config,
+        clonedConfig,
         () => this.clientCredentialsAuthManager
       ),
       new HttpClient(AbortError, {
@@ -71,11 +72,7 @@ export class Client implements ClientInterface {
         httpAgent: this._config.httpClientOptions?.httpAgent,
         httpsAgent: this._config.httpClientOptions?.httpsAgent,
       }),
-      [
-        withErrorHandlers,
-        withUserAgent,
-        withAuthenticationByDefault,
-      ],
+      [withErrorHandlers, withUserAgent, withAuthenticationByDefault],
       this._retryConfig
     );
     this.clientCredentialsAuthManager = new ClientCredentialsAuthManager(
@@ -105,7 +102,12 @@ function createHttpClientAdapter(client: HttpClient): HttpClientInterface {
 function getBaseUri(server: Server = 'default', config: Configuration): string {
   if (config.environment === Environment.Production) {
     if (server === 'default') {
-      return pathTemplate`https://${new SkipEncode(config.env)}`;
+      return 'https://api.shell.com';
+    }
+  }
+  if (config.environment === Environment.Environment2) {
+    if (server === 'default') {
+      return 'https://api-test.shell.com';
     }
   }
   throw new Error('Could not get Base URL. Invalid environment or server.');
@@ -135,7 +137,7 @@ function tap(
 ): SdkRequestBuilderFactory {
   return (...args) => {
     const requestBuilder = requestBuilderFactory(...args);
-    callback.forEach(c => c(requestBuilder));
+    callback.forEach((c) => c(requestBuilder));
     return requestBuilder;
   };
 }
@@ -149,5 +151,5 @@ function withUserAgent(rb: SdkRequestBuilder) {
 }
 
 function withAuthenticationByDefault(rb: SdkRequestBuilder) {
-  rb.authenticate([{ bearerAuth: true }]); 
+  rb.authenticate([{ bearerAuth: true }]);
 }

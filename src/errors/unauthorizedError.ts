@@ -5,15 +5,18 @@
  */
 
 import { ApiError } from '../core';
+import { UnauthorizedErrMsg } from '../models/unauthorizedErrMsg';
 
 /**
  * Creates an instance of Unauthorized
  */
 interface Unauthorized {
-  /** Error code */
-  code?: string;
-  /** Error desctiption in English */
-  message?: string;
+  /** requestId or correlation id of the message */
+  requestId?: string;
+  /** Status of the request */
+  status?: string;
+  /** Exception details of the error */
+  errors?: UnauthorizedErrMsg[];
 }
 
 export class UnauthorizedError extends ApiError<Unauthorized> {}
