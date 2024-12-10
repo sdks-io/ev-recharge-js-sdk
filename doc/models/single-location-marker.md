@@ -13,7 +13,7 @@ A Marker is a place on the map that represent a single Location
 |  --- | --- | --- | --- |
 | `markerType` | `string` | Required | Identifies the marker type. If it’s a `SingleLocationMarker`, then the value is `SingleLocation` |
 | `uniqueKey` | `string \| undefined` | Optional | Uniquely identifies the marker object |
-| `status` | [`SingleLocationMarkerStatusEnum \| undefined`](../../doc/models/single-location-marker-status-enum.md) | Optional | Minimum of all status values in the Marker, e.g. if at least one Evse in the Marker is available, the value will be available |
+| `status` | [`SingleLocationMarkerStatusEnum \| undefined`](../../doc/models/single-location-marker-status-enum.md) | Optional | - |
 | `coordinates` | [`Coordinates \| undefined`](../../doc/models/coordinates.md) | Optional | Coordinates of the Shell Recharge Site Location |
 | `evseCount` | `number \| undefined` | Optional | Total number of Evse units in Locations that this Marker represents |
 | `maxPower` | `number \| undefined` | Optional | Maximum power in kW across all locations grouped in this marker (disregarding availability) |
@@ -28,12 +28,12 @@ A Marker is a place on the map that represent a single Location
 {
   "markerType": "SingleLocation",
   "uniqueKey": "2057411_1",
-  "status": "Available",
   "evseCount": 12.0,
   "maxPower": 42.0,
   "geoHash": "sx",
   "locationUid": 2057411,
   "operatorId": "AT-HTB",
+  "status": "Available",
   "coordinates": {
     "latitude": 39.14,
     "longitude": 36.94

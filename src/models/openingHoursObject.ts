@@ -11,7 +11,6 @@ import {
 } from './openingHoursObjectWeekDayEnum';
 
 export interface OpeningHoursObject {
-  /** 3 letter day of the week */
   weekDay?: OpeningHoursObjectWeekDayEnum;
   /** Hour in 24h local time when the location opens. */
   startTime?: string;

@@ -79,6 +79,7 @@ export type { SingleLocationMarker } from './models/singleLocationMarker';
 export { SingleLocationMarkerAuthorizationMethodsItemsEnum } from './models/singleLocationMarkerAuthorizationMethodsItemsEnum';
 export type { SingleLocationMarkerResponse } from './models/singleLocationMarkerResponse';
 export { SingleLocationMarkerStatusEnum } from './models/singleLocationMarkerStatusEnum';
+export type { Tariff } from './models/tariff';
 export type { TariffVO } from './models/tariffVO';
 export { TariffVOUpdatedByEnum } from './models/tariffVOUpdatedByEnum';
 export type { UnauthorizedErrMsg } from './models/unauthorizedErrMsg';

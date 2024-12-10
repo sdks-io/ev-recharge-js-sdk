@@ -14,7 +14,6 @@ import {
 export interface GetChargeSessionRetrieveResponse200Json {
   /** Mandatory UUID (according to RFC 4122 standards) for requests and responses. This will be played back in the response from the request. */
   requestId: string;
-  /** Indicates overall status of the request */
   status: GetChargeSessionRetrieveResponse200JsonStatusEnum;
   data?: DataRetrieve[];
 }

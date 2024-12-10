@@ -23,9 +23,11 @@ const chargingController = new ChargingController(client);
 This endpoint start the charging session for the user.
 
 ```ts
-async start(  requestId: string,
+async start(
+  requestId: string,
   body?: ChargesessionStartBody,
-requestOptions?: RequestOptions): Promise<ApiResponse<InlineResponse202>>
+  requestOptions?: RequestOptions
+): Promise<ApiResponse<InlineResponse202>>
 ```
 
 ## Parameters
@@ -96,9 +98,11 @@ try {
 Accepts a request to stop an active session when a valid session id is provided.
 
 ```ts
-async stop(  requestId: string,
+async stop(
+  requestId: string,
   sessionId: string,
-requestOptions?: RequestOptions): Promise<ApiResponse<InlineResponse2021>>
+  requestOptions?: RequestOptions
+): Promise<ApiResponse<InlineResponse2021>>
 ```
 
 ## Parameters
@@ -106,7 +110,7 @@ requestOptions?: RequestOptions): Promise<ApiResponse<InlineResponse2021>>
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `requestId` | `string` | Header, Required | RequestId must be unique identifier value that can be used by the consumer to correlate each request /response .<br>Format.<br> Its canonical textual representation, the 16 octets of a UUID are represented as 32 hexadecimal (base-16) digits, displayed in five groups separated by hyphens, in the form 8-4-4-4-12 for a total of 36 characters (32 hexadecimal characters and 4 hyphens) <br> |
-| `sessionId` | `string` | Query, Required | Session Id |
+| `sessionId` | `string` | Query, Required | Session Id<br>**Constraints**: *Minimum Length*: `36`, *Maximum Length*: `36`, *Pattern*: `^[{]?[0-9a-fA-F]{8}-([0-9a-fA-F]{4}-){3}[0-9a-fA-F]{12}[}]?$` |
 | `requestOptions` | `RequestOptions \| undefined` | Optional | Pass additional request options. |
 
 ## Response Type
@@ -161,9 +165,11 @@ try {
 This endpoint returns the details of the session if the session is found.
 
 ```ts
-async getChargeSessionRetrieve(  requestId: string,
+async getChargeSessionRetrieve(
+  requestId: string,
   sessionId: string,
-requestOptions?: RequestOptions): Promise<ApiResponse<GetChargeSessionRetrieveResponse200Json>>
+  requestOptions?: RequestOptions
+): Promise<ApiResponse<GetChargeSessionRetrieveResponse200Json>>
 ```
 
 ## Parameters
@@ -171,7 +177,7 @@ requestOptions?: RequestOptions): Promise<ApiResponse<GetChargeSessionRetrieveRe
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `requestId` | `string` | Header, Required | RequestId must be unique identifier value that can be used by the consumer to correlate each request /response .<br>Format.<br> Its canonical textual representation, the 16 octets of a UUID are represented as 32 hexadecimal (base-16) digits, displayed in five groups separated by hyphens, in the form 8-4-4-4-12 for a total of 36 characters (32 hexadecimal characters and 4 hyphens) <br> |
-| `sessionId` | `string` | Query, Required | Session Id |
+| `sessionId` | `string` | Query, Required | Session Id<br>**Constraints**: *Minimum Length*: `36`, *Maximum Length*: `36`, *Pattern*: `^[{]?[0-9a-fA-F]{8}-([0-9a-fA-F]{4}-){3}[0-9a-fA-F]{12}[}]?$` |
 | `requestOptions` | `RequestOptions \| undefined` | Optional | Pass additional request options. |
 
 ## Response Type
@@ -240,9 +246,11 @@ try {
 Fetrches the active sessions for user.
 
 ```ts
-async active(  requestId: string,
+async active(
+  requestId: string,
   emaId: string,
-requestOptions?: RequestOptions): Promise<ApiResponse<ActiveResponse200Json>>
+  requestOptions?: RequestOptions
+): Promise<ApiResponse<ActiveResponse200Json>>
 ```
 
 ## Parameters
@@ -250,7 +258,7 @@ requestOptions?: RequestOptions): Promise<ApiResponse<ActiveResponse200Json>>
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `requestId` | `string` | Header, Required | RequestId must be unique identifier value that can be used by the consumer to correlate each request /response .<br>Format.<br> Its canonical textual representation, the 16 octets of a UUID are represented as 32 hexadecimal (base-16) digits, displayed in five groups separated by hyphens, in the form 8-4-4-4-12 for a total of 36 characters (32 hexadecimal characters and 4 hyphens) <br> |
-| `emaId` | `string` | Query, Required | Emobility Account Identifier(Ema-ID) |
+| `emaId` | `string` | Query, Required | Emobility Account Identifier(Ema-ID)<br>**Constraints**: *Minimum Length*: `14`, *Maximum Length*: `19` |
 | `requestOptions` | `RequestOptions \| undefined` | Optional | Pass additional request options. |
 
 ## Response Type

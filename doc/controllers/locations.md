@@ -30,7 +30,8 @@ Supported Search Options
 * Based on a specific charging unit ID (EVSE ID)
 
 ```ts
-async getEVLocations(  requestId: string,
+async getEVLocations(
+  requestId: string,
   evseStatus?: GetEVLocationsEvseStatusEnum,
   connectorTypes?: GetEVLocationsConnectorTypesEnum,
   connectorMinPower?: number,
@@ -44,7 +45,8 @@ async getEVLocations(  requestId: string,
   updatedSince?: string,
   country?: string[],
   excludeCountry?: string[],
-requestOptions?: RequestOptions): Promise<ApiResponse<Response>>
+  requestOptions?: RequestOptions
+): Promise<ApiResponse<Response>>
 ```
 
 ## Parameters
@@ -60,8 +62,8 @@ requestOptions?: RequestOptions): Promise<ApiResponse<Response>>
 | `evseId` | `string \| undefined` | Query, Optional | optional Standard EVSE (Electric Vehicle Supply Equipment) Id identifier (ISO-IEC-15118) |
 | `locationExternalId` | `string \| undefined` | Query, Optional | Filter by Locations with the given externalId. (Unique Location externalID provided by Shell Recharge) |
 | `evseExternalId` | `string \| undefined` | Query, Optional | Filter by Locations that have an Evse with the given External Id. (Unique individual EVSE externalID provided by Shell Recharge) |
-| `pageNumber` | `number \| undefined` | Query, Optional | Restrict the response list by providing a specific set of page Number. Set perPage parameter also when page Number is used. |
-| `perPage` | `number \| undefined` | Query, Optional | Restrict the number of sites in response per page. |
+| `pageNumber` | `number \| undefined` | Query, Optional | Restrict the response list by providing a specific set of page Number. Set perPage parameter also when page Number is used.<br>**Constraints**: `>= 1` |
+| `perPage` | `number \| undefined` | Query, Optional | Restrict the number of sites in response per page.<br>**Constraints**: `<= 500` |
 | `updatedSince` | `string \| undefined` | Query, Optional | ZonedDateTime as string |
 | `country` | `string[] \| undefined` | Query, Optional | Filter by Locations that are at least in one of the given countries (specified using ISO 3166-1 alpha-3 codes) |
 | `excludeCountry` | `string[] \| undefined` | Query, Optional | Filter by Locations that are not in one of the given countries (specified using ISO 3166-1 alpha-3 codes) |
@@ -131,11 +133,13 @@ This API provides the details on a single Shell Recharge location.
 The query for a single location is to be made using the Unique Internal identifier used to refer to this Location by Shell Recharge. (Uid from List of locations API)
 
 ```ts
-async evLocationsByID(  requestId: string,
+async evLocationsByID(
+  requestId: string,
   id: string,
   providerId?: string,
   since?: string,
-requestOptions?: RequestOptions): Promise<ApiResponse<Response>>
+  requestOptions?: RequestOptions
+): Promise<ApiResponse<Response>>
 ```
 
 ## Parameters
@@ -200,7 +204,8 @@ Supported Search Options
 * Based on minimum Power output (in kW) available
 
 ```ts
-async nearbyLocations(  requestId: string,
+async nearbyLocations(
+  requestId: string,
   latitude: number,
   longitude: number,
   limit?: number,
@@ -208,15 +213,16 @@ async nearbyLocations(  requestId: string,
   evseId?: string,
   evseExternalId?: string,
   operatorName?: string,
-  evseStatus?: NearbyLocationsEvseStatusEnum,
+  evseStatus?: GetEVLocationsEvseStatusEnum,
   connectorTypes?: NearbyLocationsConnectorTypesEnum,
   connectorMinPower?: number,
-  authorizationMethods?: NearbyLocationsAuthorizationMethodsEnum,
+  authorizationMethods?: GetEVLocationsAuthorizationMethodsEnum,
   withOperatorName?: boolean,
   withMaxPower?: boolean,
   country?: string[],
   excludeCountry?: string[],
-requestOptions?: RequestOptions): Promise<ApiResponse<Response>>
+  requestOptions?: RequestOptions
+): Promise<ApiResponse<Response>>
 ```
 
 ## Parameters
@@ -224,17 +230,17 @@ requestOptions?: RequestOptions): Promise<ApiResponse<Response>>
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `requestId` | `string` | Header, Required | RequestId must be unique identifier value that can be used by the consumer to correlate each request /response .<br>Format.<br> Its canonical textual representation, the 16 octets of a UUID are represented as 32 hexadecimal (base-16) digits, displayed in five groups separated by hyphens, in the form 8-4-4-4-12 for a total of 36 characters (32 hexadecimal characters and 4 hyphens) <br> |
-| `latitude` | `number` | Query, Required | Latitude to get Shell Recharge Locations nearby |
-| `longitude` | `number` | Query, Required | Longitude to get Shell Recharge Locations nearby |
-| `limit` | `number \| undefined` | Query, Optional | Maximum number of Locations to retrieve |
+| `latitude` | `number` | Query, Required | Latitude to get Shell Recharge Locations nearby<br>**Constraints**: `>= -90`, `<= 90` |
+| `longitude` | `number` | Query, Required | Longitude to get Shell Recharge Locations nearby<br>**Constraints**: `>= -180`, `<= 180` |
+| `limit` | `number \| undefined` | Query, Optional | Maximum number of Locations to retrieve<br>**Default**: `25`<br>**Constraints**: `<= 100` |
 | `locationExternalId` | `string \| undefined` | Query, Optional | Filter by Locations with the given externalId Identifier as given by the Shell Recharge Operator, unique for that Operator |
 | `evseId` | `string \| undefined` | Query, Optional | Filter by Locations that have an Evse with the given Evse Id |
 | `evseExternalId` | `string \| undefined` | Query, Optional | Filter by Locations that have an Evse with the given External Id Identifier of the Evse as given by the Operator, unique for that Operator |
 | `operatorName` | `string \| undefined` | Query, Optional | Filter by Locations that have the given operator |
-| `evseStatus` | [`NearbyLocationsEvseStatusEnum \| undefined`](../../doc/models/nearby-locations-evse-status-enum.md) | Query, Optional | Filter by Locations that have the given status |
+| `evseStatus` | [`GetEVLocationsEvseStatusEnum \| undefined`](../../doc/models/get-ev-locations-evse-status-enum.md) | Query, Optional | Filter by Locations that have the given status |
 | `connectorTypes` | [`NearbyLocationsConnectorTypesEnum \| undefined`](../../doc/models/nearby-locations-connector-types-enum.md) | Query, Optional | Filter by Locations that have Connectors with these Connector Types |
 | `connectorMinPower` | `number \| undefined` | Query, Optional | Filter by Locations that have a Connector with at least this power output (in kW) |
-| `authorizationMethods` | [`NearbyLocationsAuthorizationMethodsEnum \| undefined`](../../doc/models/nearby-locations-authorization-methods-enum.md) | Query, Optional | Filter by Locations that support the given Authorization Methods |
+| `authorizationMethods` | [`GetEVLocationsAuthorizationMethodsEnum \| undefined`](../../doc/models/get-ev-locations-authorization-methods-enum.md) | Query, Optional | Filter by Locations that support the given Authorization Methods |
 | `withOperatorName` | `boolean \| undefined` | Query, Optional | Return operator name in marker object (only for marker type Single ChargePoint) |
 | `withMaxPower` | `boolean \| undefined` | Query, Optional | Return maximum power in kW across all locations grouped in this marker (disregarding availability) |
 | `country` | `string[] \| undefined` | Query, Optional | Filter by Locations that are at least in one of the given countries (specified using ISO 3166-1 alpha-3 codes) |
@@ -316,16 +322,17 @@ The API also provide further search options to filter the result set.
 * Based on minimum Power output (in kW) available
 
 ```ts
-async locationsMarkers(  requestId: string,
+async locationsMarkers(
+  requestId: string,
   west: number,
   south: number,
   east: number,
   north: number,
   zoom: string,
-  evseStatus?: LocationsMarkersEvseStatusEnum,
-  connectorTypes?: LocationsMarkersConnectorTypesEnum,
+  evseStatus?: GetEVLocationsEvseStatusEnum,
+  connectorTypes?: GetEVLocationsConnectorTypesEnum,
   connectorMinPower?: number,
-  authorizationMethods?: LocationsMarkersAuthorizationMethodsEnum,
+  authorizationMethods?: GetEVLocationsAuthorizationMethodsEnum,
   withOperatorName?: boolean,
   withMaxPower?: boolean,
   locationExternalId?: string,
@@ -334,7 +341,8 @@ async locationsMarkers(  requestId: string,
   operatorName?: string,
   country?: string[],
   excludeCountry?: string[],
-requestOptions?: RequestOptions): Promise<ApiResponse<SingleLocationMarkerResponse>>
+  requestOptions?: RequestOptions
+): Promise<ApiResponse<SingleLocationMarkerResponse>>
 ```
 
 ## Parameters
@@ -342,15 +350,15 @@ requestOptions?: RequestOptions): Promise<ApiResponse<SingleLocationMarkerRespon
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `requestId` | `string` | Header, Required | RequestId must be unique identifier value that can be used by the consumer to correlate each request /response .<br>Format.<br> Its canonical textual representation, the 16 octets of a UUID are represented as 32 hexadecimal (base-16) digits, displayed in five groups separated by hyphens, in the form 8-4-4-4-12 for a total of 36 characters (32 hexadecimal characters and 4 hyphens) <br> |
-| `west` | `number` | Query, Required | Longitude of the western bound to get the Shell Recharge Locations |
-| `south` | `number` | Query, Required | Latitude of the southern bound to get the Shell Recharge Locations |
-| `east` | `number` | Query, Required | Longitude of the eastern bound to get the Shell Recharge Locations |
-| `north` | `number` | Query, Required | Latitude of the northern bound to get the Shell Recharge Locations |
+| `west` | `number` | Query, Required | Longitude of the western bound to get the Shell Recharge Locations<br>**Constraints**: `>= -180`, `<= 180` |
+| `south` | `number` | Query, Required | Latitude of the southern bound to get the Shell Recharge Locations<br>**Constraints**: `>= -90`, `<= 90` |
+| `east` | `number` | Query, Required | Longitude of the eastern bound to get the Shell Recharge Locations<br>**Constraints**: `>= -180`, `<= 180` |
+| `north` | `number` | Query, Required | Latitude of the northern bound to get the Shell Recharge Locations<br>**Constraints**: `>= -90`, `<= 90` |
 | `zoom` | `string` | Query, Required | Zoom level to show ex: (1: World, 5: Landmass/continent, 10: City, 15: Streets, 20: Buildings) |
-| `evseStatus` | [`LocationsMarkersEvseStatusEnum \| undefined`](../../doc/models/locations-markers-evse-status-enum.md) | Query, Optional | Filter by Locations that have the given status |
-| `connectorTypes` | [`LocationsMarkersConnectorTypesEnum \| undefined`](../../doc/models/locations-markers-connector-types-enum.md) | Query, Optional | Filter by Locations that have Connectors with the set of Connector Types |
+| `evseStatus` | [`GetEVLocationsEvseStatusEnum \| undefined`](../../doc/models/get-ev-locations-evse-status-enum.md) | Query, Optional | Filter by Locations that have the given status |
+| `connectorTypes` | [`GetEVLocationsConnectorTypesEnum \| undefined`](../../doc/models/get-ev-locations-connector-types-enum.md) | Query, Optional | Filter by Locations that have Connectors with the set of Connector Types |
 | `connectorMinPower` | `number \| undefined` | Query, Optional | Filter by Locations that have a Connector with at least this power output (in kW) |
-| `authorizationMethods` | [`LocationsMarkersAuthorizationMethodsEnum \| undefined`](../../doc/models/locations-markers-authorization-methods-enum.md) | Query, Optional | Filter by Locations that support the given Authorization Methods |
+| `authorizationMethods` | [`GetEVLocationsAuthorizationMethodsEnum \| undefined`](../../doc/models/get-ev-locations-authorization-methods-enum.md) | Query, Optional | Filter by Locations that support the given Authorization Methods |
 | `withOperatorName` | `boolean \| undefined` | Query, Optional | Return operator name in marker object (only for marker type SingleChargePoint) |
 | `withMaxPower` | `boolean \| undefined` | Query, Optional | Return maximum power in kW across all locations grouped in this marker (disregarding availability) |
 | `locationExternalId` | `string \| undefined` | Query, Optional | Filter by Locations with the given externalId. (Unique Location externalID provided by Shell Recharge) |

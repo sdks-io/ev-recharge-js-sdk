@@ -6,18 +6,17 @@
 
 import { object, Schema, string } from '../schema';
 import {
-  InlineResponse2021StatusEnum,
-  inlineResponse2021StatusEnumSchema,
-} from './inlineResponse2021StatusEnum';
+  GetChargeSessionRetrieveResponse200JsonStatusEnum,
+  getChargeSessionRetrieveResponse200JsonStatusEnumSchema,
+} from './getChargeSessionRetrieveResponse200JsonStatusEnum';
 
 export interface InlineResponse2021 {
   /** Mandatory UUID (according to RFC 4122 standards) for requests and responses. This will be played back in the response from the request. */
   requestId: string;
-  /** Indicates overall status of the request */
-  status: InlineResponse2021StatusEnum;
+  status: GetChargeSessionRetrieveResponse200JsonStatusEnum;
 }
 
 export const inlineResponse2021Schema: Schema<InlineResponse2021> = object({
   requestId: ['requestId', string()],
-  status: ['status', inlineResponse2021StatusEnumSchema],
+  status: ['status', getChargeSessionRetrieveResponse200JsonStatusEnumSchema],
 });

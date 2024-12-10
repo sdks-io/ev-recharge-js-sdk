@@ -25,7 +25,7 @@ import {
   ElectricalProperties,
   electricalPropertiesSchema,
 } from './electricalProperties';
-import { TariffVO, tariffVOSchema } from './tariffVO';
+import { Tariff, tariffSchema } from './tariff';
 
 /** An EVSE can have one or many Connectors. Each Connector will normally have a different socket / cable and only one can be used to charge at a time. */
 export interface ConnectorVO {
@@ -33,17 +33,14 @@ export interface ConnectorVO {
   uid?: number;
   /** Identifier of the Evse as given by the Operator, unique for the containing EVSE' */
   externalId?: string;
-  /** Type of the connector in the EVSE unit. */
   connectorType?: ConnectorVOConnectorTypeEnum;
   /** Electrical Properties of the Connector */
   electricalProperties?: ElectricalProperties;
   /** Indicates whether Connector has a fixed cable attached. False by default (not sent in this case) */
   fixedCable?: boolean;
-  /** Tariff details for charging on this Connector */
-  tariff?: TariffVO;
+  tariff?: Tariff;
   /** ISO8601-compliant UTC datetime of the last update of the Connector’s data */
   updated?: string;
-  /** Source of the last update */
   updatedBy?: ConnectorVOUpdatedByEnum;
   /** optional  ISO8601-compliant UTC deletion timestamp of the connector */
   deleted?: string;
@@ -61,7 +58,7 @@ export const connectorVOSchema: Schema<ConnectorVO> = object({
     optional(lazy(() => electricalPropertiesSchema)),
   ],
   fixedCable: ['fixedCable', optional(boolean())],
-  tariff: ['tariff', optional(lazy(() => tariffVOSchema))],
+  tariff: ['tariff', optional(lazy(() => tariffSchema))],
   updated: ['updated', optional(string())],
   updatedBy: ['updatedBy', optional(connectorVOUpdatedByEnumSchema)],
   deleted: ['deleted', optional(string())],

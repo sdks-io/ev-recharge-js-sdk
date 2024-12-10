@@ -6,24 +6,23 @@
 
 import { array, lazy, object, Schema, string } from '../schema';
 import {
+  GetChargeSessionRetrieveResponse200JsonStatusEnum,
+  getChargeSessionRetrieveResponse200JsonStatusEnumSchema,
+} from './getChargeSessionRetrieveResponse200JsonStatusEnum';
+import {
   InlineResponse202Data,
   inlineResponse202DataSchema,
 } from './inlineResponse202Data';
-import {
-  InlineResponse202StatusEnum,
-  inlineResponse202StatusEnumSchema,
-} from './inlineResponse202StatusEnum';
 
 export interface InlineResponse202 {
   /** Mandatory UUID (according to RFC 4122 standards) for requests and responses. This will be played back in the response from the request. */
   requestId: string;
-  /** Indicates overall status of the request */
-  status: InlineResponse202StatusEnum;
+  status: GetChargeSessionRetrieveResponse200JsonStatusEnum;
   data: InlineResponse202Data[];
 }
 
 export const inlineResponse202Schema: Schema<InlineResponse202> = object({
   requestId: ['requestId', string()],
-  status: ['status', inlineResponse202StatusEnumSchema],
+  status: ['status', getChargeSessionRetrieveResponse200JsonStatusEnumSchema],
   data: ['data', array(lazy(() => inlineResponse202DataSchema))],
 });

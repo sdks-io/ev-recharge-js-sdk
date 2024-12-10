@@ -5,24 +5,23 @@
  */
 
 import { array, lazy, object, optional, Schema, string } from '../schema';
-import {
-  ActiveResponse200JsonStatusEnum,
-  activeResponse200JsonStatusEnumSchema,
-} from './activeResponse200JsonStatusEnum';
 import { DataActive, dataActiveSchema } from './dataActive';
+import {
+  GetChargeSessionRetrieveResponse200JsonStatusEnum,
+  getChargeSessionRetrieveResponse200JsonStatusEnumSchema,
+} from './getChargeSessionRetrieveResponse200JsonStatusEnum';
 
 export interface ActiveResponse200Json {
   /** Mandatory UUID (according to RFC 4122 standards) for requests and responses. This will be played back in the response from the request. */
   requestId: string;
-  /** Indicates overall status of the request */
-  status: ActiveResponse200JsonStatusEnum;
+  status: GetChargeSessionRetrieveResponse200JsonStatusEnum;
   data?: DataActive[];
 }
 
 export const activeResponse200JsonSchema: Schema<ActiveResponse200Json> = object(
   {
     requestId: ['requestId', string()],
-    status: ['status', activeResponse200JsonStatusEnumSchema],
+    status: ['status', getChargeSessionRetrieveResponse200JsonStatusEnumSchema],
     data: ['data', optional(array(lazy(() => dataActiveSchema)))],
   }
 );

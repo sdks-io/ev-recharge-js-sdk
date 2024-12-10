@@ -12,7 +12,6 @@ import {
 
 /** Electrical Properties of the Connector */
 export interface ElectricalProperties {
-  /** Power Type used in this connector. */
   powerType?: ElectricalPropertiesPowerTypeEnum;
   /** Voltage in Volts for this connector */
   voltage?: number;

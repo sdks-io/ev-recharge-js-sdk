@@ -10,7 +10,7 @@
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `requestId` | `string` | Required | Mandatory UUID (according to RFC 4122 standards) for requests and responses. This will be played back in the response from the request. |
-| `status` | [`InlineResponse202StatusEnum`](../../doc/models/inline-response-202-status-enum.md) | Required | Indicates overall status of the request |
+| `status` | [`GetChargeSessionRetrieveResponse200JsonStatusEnum`](../../doc/models/get-charge-session-retrieve-response-200-json-status-enum.md) | Required | - |
 | `data` | [`InlineResponse202Data[]`](../../doc/models/inline-response-202-data.md) | Required | - |
 
 ## Example (as JSON)

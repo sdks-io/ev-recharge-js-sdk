@@ -10,7 +10,7 @@
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `requestId` | `string` | Required | Mandatory UUID (according to RFC 4122 standards) for requests and responses. This will be played back in the response from the request. |
-| `status` | [`ActiveResponse200JsonStatusEnum`](../../doc/models/active-response-200-json-status-enum.md) | Required | Indicates overall status of the request<br>**Constraints**: *Minimum Length*: `7`, *Maximum Length*: `7` |
+| `status` | [`GetChargeSessionRetrieveResponse200JsonStatusEnum`](../../doc/models/get-charge-session-retrieve-response-200-json-status-enum.md) | Required | **Constraints**: *Minimum Length*: `7`, *Maximum Length*: `7` |
 | `data` | [`DataActive[] \| undefined`](../../doc/models/data-active.md) | Optional | - |
 
 ## Example (as JSON)

@@ -29,7 +29,6 @@ export interface SingleLocationMarker {
   markerType: string;
   /** Uniquely identifies the marker object */
   uniqueKey?: string;
-  /** Minimum of all status values in the Marker, e.g. if at least one Evse in the Marker is available, the value will be available */
   status?: SingleLocationMarkerStatusEnum;
   /** Coordinates of the Shell Recharge Site Location */
   coordinates?: Coordinates;

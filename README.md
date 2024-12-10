@@ -27,15 +27,31 @@ Go to the Shell Developer Portal: [https://developer.shell.com](https://develope
 
 Run the following command from your project directory to install the package from npm:
 
-```ts
-npm install ev-recharge-sdk@1.2.0
+```bash
+npm install ev-recharge-sdk@1.3.0
 ```
 
-For additional package details, see the [Npm page for the ev-recharge-sdk@1.2.0 npm](https://www.npmjs.com/package/ev-recharge-sdk/v/1.2.0).
+For additional package details, see the [Npm page for the ev-recharge-sdk@1.3.0 npm](https://www.npmjs.com/package/ev-recharge-sdk/v/1.3.0).
+
+## Test the SDK
+
+To validate the functionality of this SDK, you can execute all tests located in the `test` directory. This SDK utilizes `Jest` as both the testing framework and test runner.
+
+To run the tests, navigate to the root directory of the SDK and execute the following command:
+
+```bash
+npm run test
+```
+
+Or you can also run tests with coverage report:
+
+```bash
+npm run test:coverage
+```
 
 ## Initialize the API Client
 
-**_Note:_** Documentation for the client can be found [here.](https://www.github.com/sdks-io/ev-recharge-js-sdk/tree/1.2.0/doc/client.md)
+**_Note:_** Documentation for the client can be found [here.](https://www.github.com/sdks-io/ev-recharge-js-sdk/tree/1.3.0/doc/client.md)
 
 The following parameters are configurable for the API Client:
 
@@ -45,7 +61,7 @@ The following parameters are configurable for the API Client:
 | `timeout` | `number` | Timeout for API calls.<br>*Default*: `0` |
 | `httpClientOptions` | `Partial<HttpClientOptions>` | Stable configurable http client options. |
 | `unstableHttpClientOptions` | `any` | Unstable configurable http client options. |
-| `clientCredentialsAuthCredentials` | [`ClientCredentialsAuthCredentials`](https://www.github.com/sdks-io/ev-recharge-js-sdk/tree/1.2.0/doc/$a/https://www.github.com/sdks-io/ev-recharge-js-sdk/tree/1.2.0/oauth-2-client-credentials-grant.md) | The credential object for clientCredentialsAuth |
+| `clientCredentialsAuthCredentials` | [`ClientCredentialsAuthCredentials`](https://www.github.com/sdks-io/ev-recharge-js-sdk/tree/1.3.0/doc/auth/oauth-2-client-credentials-grant.md) | The credential object for clientCredentialsAuth |
 
 ### HttpClientOptions
 
@@ -89,22 +105,22 @@ The SDK can be configured to use a different environment for making API calls. A
 
 | Name | Description |
 |  --- | --- |
-| production | **Default** Production |
-| environment2 | Test |
+| production | **Default** Production Server |
+| environment2 | Test Server |
 
 ## Authorization
 
 This API uses the following authentication schemes.
 
-* [`BearerAuth (OAuth 2 Client Credentials Grant)`](https://www.github.com/sdks-io/ev-recharge-js-sdk/tree/1.2.0/doc/$a/https://www.github.com/sdks-io/ev-recharge-js-sdk/tree/1.2.0/oauth-2-client-credentials-grant.md)
+* [`BearerAuth (OAuth 2 Client Credentials Grant)`](https://www.github.com/sdks-io/ev-recharge-js-sdk/tree/1.3.0/doc/auth/oauth-2-client-credentials-grant.md)
 
 ## List of APIs
 
-* [Locations](https://www.github.com/sdks-io/ev-recharge-js-sdk/tree/1.2.0/doc/controllers/locations.md)
-* [Charging](https://www.github.com/sdks-io/ev-recharge-js-sdk/tree/1.2.0/doc/controllers/charging.md)
+* [Locations](https://www.github.com/sdks-io/ev-recharge-js-sdk/tree/1.3.0/doc/controllers/locations.md)
+* [Charging](https://www.github.com/sdks-io/ev-recharge-js-sdk/tree/1.3.0/doc/controllers/charging.md)
 
 ## Classes Documentation
 
-* [ApiResponse](https://www.github.com/sdks-io/ev-recharge-js-sdk/tree/1.2.0/doc/api-response.md)
-* [ApiError](https://www.github.com/sdks-io/ev-recharge-js-sdk/tree/1.2.0/doc/api-error.md)
+* [ApiResponse](https://www.github.com/sdks-io/ev-recharge-js-sdk/tree/1.3.0/doc/api-response.md)
+* [ApiError](https://www.github.com/sdks-io/ev-recharge-js-sdk/tree/1.3.0/doc/api-error.md)
 

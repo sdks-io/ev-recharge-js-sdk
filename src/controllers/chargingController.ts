@@ -53,7 +53,7 @@ export class ChargingController extends BaseController {
     body?: ChargesessionStartBody,
     requestOptions?: RequestOptions
   ): Promise<ApiResponse<InlineResponse202>> {
-    const req = this.createRequest('POST', '/ev/v1/charge-session/start');
+    const req = this.createRequest('POST', '/charge-session/start');
     const mapped = req.prepareArgs({
       requestId: [requestId, string()],
       body: [body, optional(chargesessionStartBodySchema)],
@@ -99,7 +99,7 @@ export class ChargingController extends BaseController {
     sessionId: string,
     requestOptions?: RequestOptions
   ): Promise<ApiResponse<InlineResponse2021>> {
-    const req = this.createRequest('POST', '/ev/v1/charge-session/stop');
+    const req = this.createRequest('POST', '/charge-session/stop');
     const mapped = req.prepareArgs({
       requestId: [requestId, string()],
       sessionId: [sessionId, string()],
@@ -144,7 +144,7 @@ export class ChargingController extends BaseController {
     sessionId: string,
     requestOptions?: RequestOptions
   ): Promise<ApiResponse<GetChargeSessionRetrieveResponse200Json>> {
-    const req = this.createRequest('GET', '/ev/v1/charge-session/retrieve');
+    const req = this.createRequest('GET', '/charge-session/retrieve');
     const mapped = req.prepareArgs({
       requestId: [requestId, string()],
       sessionId: [sessionId, string()],
@@ -192,7 +192,7 @@ export class ChargingController extends BaseController {
     emaId: string,
     requestOptions?: RequestOptions
   ): Promise<ApiResponse<ActiveResponse200Json>> {
-    const req = this.createRequest('GET', '/ev/v1/charge-session/active');
+    const req = this.createRequest('GET', '/charge-session/active');
     const mapped = req.prepareArgs({
       requestId: [requestId, string()],
       emaId: [emaId, string()],

@@ -102,12 +102,18 @@ function createHttpClientAdapter(client: HttpClient): HttpClientInterface {
 function getBaseUri(server: Server = 'default', config: Configuration): string {
   if (config.environment === Environment.Production) {
     if (server === 'default') {
-      return 'https://api.shell.com';
+      return 'https://api.shell.com/ev/v1';
+    }
+    if (server === 'access token server') {
+      return 'https://api.shell.com/v1/oauth';
     }
   }
   if (config.environment === Environment.Environment2) {
     if (server === 'default') {
-      return 'https://api-test.shell.com';
+      return 'https://api-test.shell.com/ev/v1';
+    }
+    if (server === 'access token server') {
+      return 'https://api.shell.com/v1/oauth';
     }
   }
   throw new Error('Could not get Base URL. Invalid environment or server.');

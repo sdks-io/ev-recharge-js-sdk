@@ -10,8 +10,7 @@ import {
   tariffVOUpdatedByEnumSchema,
 } from './tariffVOUpdatedByEnum';
 
-/** Tariff details for charging on this Connector */
-export interface TariffVO {
+export interface Tariff {
   /** Tariff to start a charging session */
   startFee?: number;
   /** Tariff per minute of charging time */
@@ -27,7 +26,7 @@ export interface TariffVO {
   structure?: string;
 }
 
-export const tariffVOSchema: Schema<TariffVO> = object({
+export const tariffSchema: Schema<Tariff> = object({
   startFee: ['startFee', optional(number())],
   perMinute: ['perMinute', optional(number())],
   perKWh: ['perKWh', optional(number())],
