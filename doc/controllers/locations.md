@@ -71,7 +71,7 @@ async getEVLocations(
 
 ## Response Type
 
-[`Response`](../../doc/models/response.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `result` property of this instance returns the response data which is of type [Response](../../doc/models/response.md).
 
 ## Example Usage
 
@@ -154,7 +154,7 @@ async evLocationsByID(
 
 ## Response Type
 
-[`Response`](../../doc/models/response.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `result` property of this instance returns the response data which is of type [Response](../../doc/models/response.md).
 
 ## Example Usage
 
@@ -249,7 +249,7 @@ async nearbyLocations(
 
 ## Response Type
 
-[`Response`](../../doc/models/response.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `result` property of this instance returns the response data which is of type [Response](../../doc/models/response.md).
 
 ## Example Usage
 
@@ -371,7 +371,7 @@ async locationsMarkers(
 
 ## Response Type
 
-[`SingleLocationMarkerResponse`](../../doc/models/single-location-marker-response.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `result` property of this instance returns the response data which is of type [SingleLocationMarkerResponse](../../doc/models/single-location-marker-response.md).
 
 ## Example Usage
 

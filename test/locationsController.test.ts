@@ -15,7 +15,7 @@ describe('LocationsController', () => {
     controller = new LocationsController(testClient);
   });
 
-  it('should Test getEVLocations', async () => {
+  it('should Test GetEVLocations', async () => {
     const requestId = '123e4567-e89b-12d3-a456-426614174000';
 
     const evseId = 'NL*TNM*E01000401*0';

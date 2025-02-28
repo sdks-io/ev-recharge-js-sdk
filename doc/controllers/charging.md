@@ -14,7 +14,7 @@ const chargingController = new ChargingController(client);
 
 * [Start](../../doc/controllers/charging.md#start)
 * [Stop](../../doc/controllers/charging.md#stop)
-* [Get-Charge-Session-Retrieve](../../doc/controllers/charging.md#get-charge-session-retrieve)
+* [Get Charge Session Retrieve](../../doc/controllers/charging.md#get-charge-session-retrieve)
 * [Active](../../doc/controllers/charging.md#active)
 
 
@@ -40,7 +40,7 @@ async start(
 
 ## Response Type
 
-[`InlineResponse202`](../../doc/models/inline-response-202.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `result` property of this instance returns the response data which is of type [InlineResponse202](../../doc/models/inline-response-202.md).
 
 ## Example Usage
 
@@ -115,7 +115,7 @@ async stop(
 
 ## Response Type
 
-[`InlineResponse2021`](../../doc/models/inline-response-2021.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `result` property of this instance returns the response data which is of type [InlineResponse2021](../../doc/models/inline-response-2021.md).
 
 ## Example Usage
 
@@ -160,7 +160,7 @@ try {
 | 503 | Service unavailable | [`ServiceunavailableError`](../../doc/models/serviceunavailable-error.md) |
 
 
-# Get-Charge-Session-Retrieve
+# Get Charge Session Retrieve
 
 This endpoint returns the details of the session if the session is found.
 
@@ -182,7 +182,7 @@ async getChargeSessionRetrieve(
 
 ## Response Type
 
-[`GetChargeSessionRetrieveResponse200Json`](../../doc/models/get-charge-session-retrieve-response-200-json.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `result` property of this instance returns the response data which is of type [GetChargeSessionRetrieveResponse200Json](../../doc/models/get-charge-session-retrieve-response-200-json.md).
 
 ## Example Usage
 
@@ -263,7 +263,7 @@ async active(
 
 ## Response Type
 
-[`ActiveResponse200Json`](../../doc/models/active-response-200-json.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `result` property of this instance returns the response data which is of type [ActiveResponse200Json](../../doc/models/active-response-200-json.md).
 
 ## Example Usage
 

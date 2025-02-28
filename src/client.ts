@@ -105,7 +105,7 @@ function getBaseUri(server: Server = 'default', config: Configuration): string {
       return 'https://api.shell.com/ev/v1';
     }
     if (server === 'access token server') {
-      return 'https://api.shell.com/v1/oauth';
+      return 'https://api.shell.com/v2/oauth';
     }
   }
   if (config.environment === Environment.Environment2) {
@@ -113,7 +113,7 @@ function getBaseUri(server: Server = 'default', config: Configuration): string {
       return 'https://api-test.shell.com/ev/v1';
     }
     if (server === 'access token server') {
-      return 'https://api.shell.com/v1/oauth';
+      return 'https://api.shell.com/v2/oauth';
     }
   }
   throw new Error('Could not get Base URL. Invalid environment or server.');

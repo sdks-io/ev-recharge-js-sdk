@@ -85,7 +85,7 @@ describe('ChargingController', () => {
     );
   });
 
-  it('should Test get-charge-session-retrieve', async () => {
+  it('should Test GetChargeSessionRetrieve', async () => {
     const requestId = '123e4567-e89b-12d3-a456-426614174000';
 
     const sessionId = 'c3e332f0-1bb2-4f50-a96b-e075bbb71e68';
