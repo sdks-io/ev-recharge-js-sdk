@@ -50,8 +50,6 @@ export interface Configuration {
 export enum Environment {
   Production = 'production',
   Environment2 = 'environment2',
-  Environment3 = 'environment3',
-  Environment4 = 'environment4',
 }
 
 export namespace Configuration {

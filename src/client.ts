@@ -127,20 +127,16 @@ function getBaseUri(server: Server = 'default', config: Configuration): string {
     if (server === 'default') {
       return 'https://api.shell.com/ev';
     }
-  }
-  if (config.environment === Environment.Environment2) {
-    if (server === 'default') {
+    if (server === 'access token server') {
       return 'https://api.shell.com/v2/oauth';
     }
   }
-  if (config.environment === Environment.Environment3) {
+  if (config.environment === Environment.Environment2) {
     if (server === 'default') {
       return 'https://api-test.shell.com/ev';
     }
-  }
-  if (config.environment === Environment.Environment4) {
-    if (server === 'default') {
-      return 'https://api-test.shell.com/v2/oauth';
+    if (server === 'access token server') {
+      return 'https://api.shell.com/v2/oauth';
     }
   }
   throw new Error('Could not get Base URL. Invalid environment or server.');

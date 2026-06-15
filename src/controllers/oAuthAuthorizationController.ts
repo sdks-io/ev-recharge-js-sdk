@@ -25,7 +25,7 @@ export class OAuthAuthorizationController extends BaseController {
     requestOptions?: RequestOptions
   ): Promise<ApiResponse<OAuthToken>> {
     const req = this.createRequest('POST', '/token');
-    req.baseUrl('default');
+    req.baseUrl('access token server');
     const mapped = req.prepareArgs({
       authorization: [authorization, string()],
       scope: [scope, optional(string())],
