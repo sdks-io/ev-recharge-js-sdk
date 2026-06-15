@@ -5,8 +5,8 @@
  */
 
 import { LocationsController } from '../src';
-import { testClient } from './testClient';
-import { expectHeadersToMatch, makeApiCall } from './testHelper';
+import { testClient } from './testClient.js';
+import { expectHeadersToMatch, makeApiCall } from './testHelper.js';
 
 describe('LocationsController', () => {
   let controller : LocationsController;
@@ -19,14 +19,6 @@ describe('LocationsController', () => {
     const requestId = '123e4567-e89b-12d3-a456-426614174000';
 
     const evseId = 'NL*TNM*E01000401*0';
-
-    const country: string[] = [
-      'NED'
-    ];
-
-    const excludeCountry: string[] = [
-      'NED'
-    ];
 
     const response = await makeApiCall(
       () => controller.getEVLocations(
@@ -42,8 +34,8 @@ describe('LocationsController', () => {
         undefined,
         undefined,
         undefined,
-        country,
-        excludeCountry
+        undefined,
+        undefined
       )
     );
 

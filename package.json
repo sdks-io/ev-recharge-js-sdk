@@ -1,9 +1,9 @@
 {
-  "version": "1.4.0",
+  "version": "2.0.0",
   "license": "MIT",
   "sideEffects": false,
   "main": "dist/cjs/index.js",
-  "typings": "dist/types/index.d.ts",
+  "typings": "dist/cjs/types/index.d.ts",
   "module": "dist/esm/index.js",
   "files": [
     "dist",
@@ -14,8 +14,8 @@
     "node": ">=14.17.0"
   },
   "scripts": {
-    "build": "rm -rf dist & tsc -p tsconfig.esm.json & tsc -p tsconfig.cjs.json",
-    "prepare": "rm -rf dist & tsc -p tsconfig.esm.json & tsc -p tsconfig.cjs.json",
+    "build": "rimraf dist && tsc -p tsconfig.esm.json & tsc -p tsconfig.cjs.json && node ./scripts/split-package-json.mjs",
+    "prepare": "rimraf dist && tsc -p tsconfig.esm.json & tsc -p tsconfig.cjs.json && node ./scripts/split-package-json.mjs",
     "test": "jest --passWithNoTests",
     "test:coverage": "jest --coverage --passWithNoTests",
     "lint": "eslint **/*.ts --ignore-path .eslintignore",
@@ -37,22 +37,23 @@
     "url": "https://developer.shell.com/support"
   },
   "devDependencies": {
-    "@apimatic/test-utilities": "^0.0.1",
+    "@apimatic/test-utilities": "^0.1.2",
     "@types/jest": "^29.4.0",
     "@typescript-eslint/eslint-plugin": "^5.52.0",
     "@typescript-eslint/parser": "^5.52.0",
     "eslint": "^8.34.0",
     "jest": "^29.4.3",
-    "ts-jest": "^29.0.5",
+    "rimraf": "^3.0.2",
+    "ts-jest": "29.2.6",
     "tslib": "^2.5.0",
-    "typescript": "^4.9.5"
+    "typescript": "^5.2.0"
   },
   "dependencies": {
-    "@apimatic/authentication-adapters": "^0.5.4",
-    "@apimatic/axios-client-adapter": "^0.3.7",
-    "@apimatic/core": "^0.10.16",
-    "@apimatic/oauth-adapters": "^0.4.8",
-    "@apimatic/schema": "^0.7.14"
+    "@apimatic/authentication-adapters": "^0.5.14",
+    "@apimatic/axios-client-adapter": "^0.3.20",
+    "@apimatic/core": "^0.10.28",
+    "@apimatic/oauth-adapters": "^0.4.18",
+    "@apimatic/schema": "^0.7.21"
   },
   "repository": {
     "type": "git",
@@ -73,5 +74,27 @@
     "Recharge",
     "locations"
   ],
-  "contributors": []
+  "contributors": [],
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/esm/types/index.d.ts",
+        "default": "./dist/esm/index.js"
+      },
+      "require": {
+        "types": "./dist/cjs/types/index.d.ts",
+        "default": "./dist/cjs/index.js"
+      }
+    },
+    "./metadata": {
+      "import": {
+        "types": "./dist/esm/types/metadata/index.d.ts",
+        "default": "./dist/esm/metadata/index.js"
+      },
+      "require": {
+        "types": "./dist/cjs/types/metadata/index.d.ts",
+        "default": "./dist/cjs/metadata/index.js"
+      }
+    }
+  }
 }

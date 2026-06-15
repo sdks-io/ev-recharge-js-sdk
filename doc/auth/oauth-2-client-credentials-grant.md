@@ -9,12 +9,12 @@ Documentation for accessing and setting credentials for BearerAuth.
 
 | Name | Type | Description | Setter |
 |  --- | --- | --- | --- |
-| OAuthClientId | `string` | OAuth 2 Client ID | `oAuthClientId` |
-| OAuthClientSecret | `string` | OAuth 2 Client Secret | `oAuthClientSecret` |
-| OAuthToken | `OAuthToken` | Object for storing information about the OAuth token | `oAuthToken` |
-| OAuthClockSkew | `number` | Clock skew time in seconds applied while checking the OAuth Token expiry. | `clockSkew` |
-| OAuthTokenProvider | `(lastOAuthToken: OAuthToken \| undefined, authManager: ClientCredentialsAuthManager) => Promise<OAuthToken>` | Registers a callback for oAuth Token Provider used for automatic token fetching/refreshing. | `oAuthTokenProvider` |
-| OAuthOnTokenUpdate | `(token: OAuthToken) => void` | Registers a callback for token update event. | `oAuthOnTokenUpdate` |
+| oAuthClientId | `string` | OAuth 2 Client ID | `oAuthClientId` |
+| oAuthClientSecret | `string` | OAuth 2 Client Secret | `oAuthClientSecret` |
+| oAuthToken | `OAuthToken` | Object for storing information about the OAuth token | `oAuthToken` |
+| oAuthClockSkew | `number` | Clock skew time in seconds applied while checking the OAuth Token expiry. | `clockSkew` |
+| oAuthTokenProvider | `(lastOAuthToken: OAuthToken \| undefined, authManager: ClientCredentialsAuthManager) => Promise<OAuthToken>` | Registers a callback for oAuth Token Provider used for automatic token fetching/refreshing. | `oAuthTokenProvider` |
+| oAuthOnTokenUpdate | `(token: OAuthToken) => void` | Registers a callback for token update event. | `oAuthOnTokenUpdate` |
 
 
 
@@ -27,6 +27,8 @@ Documentation for accessing and setting credentials for BearerAuth.
 You must initialize the client with *OAuth 2.0 Client Credentials Grant* credentials as shown in the following code snippet. This will fetch the OAuth token automatically when any of the endpoints, requiring *OAuth 2.0 Client Credentials Grant* authentication, are called.
 
 ```ts
+import { Client } from 'ev-recharge-sdk';
+
 const client = new Client({
   clientCredentialsAuthCredentials: {
     oAuthClientId: 'OAuthClientId',
@@ -44,6 +46,8 @@ Your application can also manually provide an OAuthToken using the setter `oAuth
 Whenever the OAuth Token gets updated, the provided callback implementation will be executed. For instance, you may use it to store your access token whenever it gets updated.
 
 ```ts
+import { Client, OAuthToken } from 'ev-recharge-sdk';
+
 const client = new Client({
   clientCredentialsAuthCredentials: {
     oAuthClientId: 'OAuthClientId',
@@ -62,6 +66,12 @@ const client = new Client({
 To authorize a client using a stored access token, set up the `oAuthTokenProvider` in `clientCredentialsAuthCredentials` along with the other auth parameters before creating the client:
 
 ```ts
+import {
+  Client,
+  ClientCredentialsAuthManager,
+  OAuthToken,
+} from 'ev-recharge-sdk';
+
 const client = new Client({
   clientCredentialsAuthCredentials: {
     oAuthClientId: 'OAuthClientId',

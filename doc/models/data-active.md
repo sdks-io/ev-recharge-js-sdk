@@ -10,8 +10,8 @@
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `id` | `string \| undefined` | Optional | Id of the session |
-| `userId` | `string \| undefined` | Optional | Id of the user that started the session<br>**Constraints**: *Minimum Length*: `36`, *Maximum Length*: `36`, *Pattern*: `^[{]?[0-9a-fA-F]{8}-([0-9a-fA-F]{4}-){3}[0-9a-fA-F]{12}[}]?$` |
-| `emaId` | `string \| undefined` | Optional | Id of the evse that the user is charging<br>**Constraints**: *Minimum Length*: `12`, *Maximum Length*: `36` |
+| `userId` | `string \| undefined` | Optional | Id of the user that started the session<br><br>**Constraints**: *Minimum Length*: `36`, *Maximum Length*: `36`, *Pattern*: `^[{]?[0-9a-fA-F]{8}-([0-9a-fA-F]{4}-){3}[0-9a-fA-F]{12}[}]?$` |
+| `emaId` | `string \| undefined` | Optional | Id of the evse that the user is charging<br><br>**Constraints**: *Minimum Length*: `12`, *Maximum Length*: `36` |
 | `evseId` | `string \| undefined` | Optional | Electric Vehicle Supply Equipment Identifier. An EVSEID identifies a Charging Point. |
 | `startedAt` | `string \| undefined` | Optional | When the session is started |
 | `stoppedAt` | `string \| null \| undefined` | Optional | When the session is stopped |

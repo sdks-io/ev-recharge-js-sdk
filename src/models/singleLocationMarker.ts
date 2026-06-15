@@ -12,16 +12,16 @@ import {
   optional,
   Schema,
   string,
-} from '../schema';
-import { Coordinates, coordinatesSchema } from './coordinates';
+} from '../schema.js';
+import { Coordinates1, coordinates1Schema } from './coordinates1.js';
 import {
   SingleLocationMarkerAuthorizationMethodsItemsEnum,
   singleLocationMarkerAuthorizationMethodsItemsEnumSchema,
-} from './singleLocationMarkerAuthorizationMethodsItemsEnum';
+} from './singleLocationMarkerAuthorizationMethodsItemsEnum.js';
 import {
   SingleLocationMarkerStatusEnum,
   singleLocationMarkerStatusEnumSchema,
-} from './singleLocationMarkerStatusEnum';
+} from './singleLocationMarkerStatusEnum.js';
 
 /** A Marker is a place on the map that represent a single Location */
 export interface SingleLocationMarker {
@@ -29,9 +29,9 @@ export interface SingleLocationMarker {
   markerType: string;
   /** Uniquely identifies the marker object */
   uniqueKey?: string;
+  /** Minimum of all status values in the Marker, e.g. if at least one Evse in the Marker is available, the value will be available */
   status?: SingleLocationMarkerStatusEnum;
-  /** Coordinates of the Shell Recharge Site Location */
-  coordinates?: Coordinates;
+  coordinates?: Coordinates1;
   /** Total number of Evse units in Locations that this Marker represents */
   evseCount?: number;
   /** Maximum power in kW across all locations grouped in this marker (disregarding availability) */
@@ -46,18 +46,23 @@ export interface SingleLocationMarker {
   operatorId?: string;
 }
 
-export const singleLocationMarkerSchema: Schema<SingleLocationMarker> = object({
-  markerType: ['markerType', string()],
-  uniqueKey: ['uniqueKey', optional(string())],
-  status: ['status', optional(singleLocationMarkerStatusEnumSchema)],
-  coordinates: ['coordinates', optional(lazy(() => coordinatesSchema))],
-  evseCount: ['evseCount', optional(number())],
-  maxPower: ['maxPower', optional(number())],
-  geoHash: ['geoHash', optional(string())],
-  locationUid: ['locationUid', optional(number())],
-  authorizationMethods: [
-    'authorizationMethods',
-    optional(array(singleLocationMarkerAuthorizationMethodsItemsEnumSchema)),
-  ],
-  operatorId: ['operatorId', optional(string())],
-});
+export const singleLocationMarkerSchema: Schema<SingleLocationMarker> = lazy(
+  () =>
+    object({
+      markerType: ['markerType', string()],
+      uniqueKey: ['uniqueKey', optional(string())],
+      status: ['status', optional(singleLocationMarkerStatusEnumSchema)],
+      coordinates: ['coordinates', optional(coordinates1Schema)],
+      evseCount: ['evseCount', optional(number())],
+      maxPower: ['maxPower', optional(number())],
+      geoHash: ['geoHash', optional(string())],
+      locationUid: ['locationUid', optional(number())],
+      authorizationMethods: [
+        'authorizationMethods',
+        optional(
+          array(singleLocationMarkerAuthorizationMethodsItemsEnumSchema)
+        ),
+      ],
+      operatorId: ['operatorId', optional(string())],
+    })
+);

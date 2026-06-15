@@ -6,9 +6,9 @@
 
 export * from '@apimatic/test-utilities';
 
-import { HttpClient } from '../src/clientAdapter';
-import { HttpClientInterface } from '../src/core';
-import { ApiError, ApiResponse, AbortError } from '../src';
+import { HttpClient } from '../src/clientAdapter.js';
+import { HttpClientInterface } from '../src/core.js';
+import { AbortError, ApiError, ApiResponse } from '../src';
 
 export function httpClientInterface(): HttpClientInterface {
   return async (request, requestOptions) => {

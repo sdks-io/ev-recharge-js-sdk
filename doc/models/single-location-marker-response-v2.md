@@ -1,9 +1,9 @@
 
-# Response
+# Single Location Marker Response V2
 
 ## Structure
 
-`Response`
+`SingleLocationMarkerResponseV2`
 
 ## Fields
 
@@ -11,7 +11,7 @@
 |  --- | --- | --- | --- |
 | `requestId` | `string \| undefined` | Optional | requestId is unique identifier value that is attached to requests and messages that allow reference to a particular transaction or event chain. |
 | `status` | `string \| undefined` | Optional | status of the API call |
-| `data` | [`LocationResponeObject[] \| undefined`](../../doc/models/location-respone-object.md) | Optional | API Response |
+| `data` | [`LocationMarkerV2[] \| undefined`](../../doc/models/containers/location-marker-v2.md) | Optional | - |
 
 ## Example (as JSON)
 
@@ -21,19 +21,26 @@
   "status": "SUCCESS",
   "data": [
     {
-      "uid": 74,
-      "externalId": "externalId6",
+      "markerType": "SingleLocation",
+      "status": "Unavailable",
       "coordinates": {
         "latitude": 39.14,
         "longitude": 36.94
       },
-      "operatorName": "operatorName0",
-      "address": {
-        "streetAndNumber": "streetAndNumber2",
-        "postalCode": "postalCode8",
-        "city": "city6",
-        "country": "country0"
-      }
+      "evseCount": 223.04,
+      "maxPower": 45.08,
+      "locationCount": 62.98
+    },
+    {
+      "markerType": "SingleLocation",
+      "status": "Unavailable",
+      "coordinates": {
+        "latitude": 39.14,
+        "longitude": 36.94
+      },
+      "evseCount": 223.04,
+      "maxPower": 45.08,
+      "locationCount": 62.98
     }
   ]
 }

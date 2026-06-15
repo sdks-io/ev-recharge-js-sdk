@@ -30,6 +30,10 @@ async start(
 ): Promise<ApiResponse<InlineResponse202>>
 ```
 
+## Authentication
+
+This endpoint requires [BearerAuth](../../doc/auth/oauth-2-client-credentials-grant.md)
+
 ## Parameters
 
 | Parameter | Type | Tags | Description |
@@ -40,7 +44,9 @@ async start(
 
 ## Response Type
 
-This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `result` property of this instance returns the response data which is of type [InlineResponse202](../../doc/models/inline-response-202.md).
+**200**: SUCCESS
+
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `result` property of this instance returns the response data which is of type [`InlineResponse202`](../../doc/models/inline-response-202.md).
 
 ## Example Usage
 
@@ -53,16 +59,41 @@ const body: ChargesessionStartBody = {
 };
 
 try {
-  const { result, ...httpResponse } = await chargingController.start(
-  requestId,
-  body
-);
-  // Get more response info...
-  // const { statusCode, headers } = httpResponse;
+  const response = await chargingController.start(
+    requestId,
+    body
+  );
+
+  // Extracting fully parsed response body.
+  console.log(response.result);
+
+  // Extracting response status code.
+  console.log(response.statusCode);
+  // Extracting response headers.
+  console.log(response.headers);
+  // Extracting response body of type `string | Stream`
+  console.log(response.body);
 } catch (error) {
   if (error instanceof ApiError) {
-    const errors = error.result;
-    // const { statusCode, headers } = error;
+    // Extracting response error status code.
+    console.log(error.statusCode);
+    // Extracting response error headers.
+    console.log(error.headers);
+    // Extracting response error body of type `string | Stream`.
+    console.log(error.body);
+    if (error instanceof BadRequestError) {
+      console.log(error.result);
+    } else if (error instanceof UnauthorizedError) {
+      console.log(error.result);
+    } else if (error instanceof V2ChargeSessionStart404Error) {
+      console.log(error.result);
+    } else if (error instanceof TooManyRequestsError) {
+      console.log(error.result);
+    } else if (error instanceof InternalServerError) {
+      console.log(error.result);
+    } else if (error instanceof ServiceunavailableError) {
+      console.log(error.result);
+    }
   }
 }
 ```
@@ -87,7 +118,7 @@ try {
 |  --- | --- | --- |
 | 400 | The server cannot or will not process the request due to something that is perceived to be a client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing). | [`BadRequestError`](../../doc/models/bad-request-error.md) |
 | 401 | The request has not been applied because it lacks valid authentication credentials for the target resource. | [`UnauthorizedError`](../../doc/models/unauthorized-error.md) |
-| 404 | Location Not Found | [`NotFoundError`](../../doc/models/not-found-error.md) |
+| 404 | Location Not Found | [`V2ChargeSessionStart404Error`](../../doc/models/v2-charge-session-start-404-error.md) |
 | 429 | The Request reached maximum allocated rate limit | [`TooManyRequestsError`](../../doc/models/too-many-requests-error.md) |
 | 500 | Internal Server error | [`InternalServerError`](../../doc/models/internal-server-error.md) |
 | 503 | Service unavailable | [`ServiceunavailableError`](../../doc/models/serviceunavailable-error.md) |
@@ -105,17 +136,23 @@ async stop(
 ): Promise<ApiResponse<InlineResponse2021>>
 ```
 
+## Authentication
+
+This endpoint requires [BearerAuth](../../doc/auth/oauth-2-client-credentials-grant.md)
+
 ## Parameters
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `requestId` | `string` | Header, Required | RequestId must be unique identifier value that can be used by the consumer to correlate each request /response .<br>Format.<br> Its canonical textual representation, the 16 octets of a UUID are represented as 32 hexadecimal (base-16) digits, displayed in five groups separated by hyphens, in the form 8-4-4-4-12 for a total of 36 characters (32 hexadecimal characters and 4 hyphens) <br> |
-| `sessionId` | `string` | Query, Required | Session Id<br>**Constraints**: *Minimum Length*: `36`, *Maximum Length*: `36`, *Pattern*: `^[{]?[0-9a-fA-F]{8}-([0-9a-fA-F]{4}-){3}[0-9a-fA-F]{12}[}]?$` |
+| `sessionId` | `string` | Query, Required | Session Id<br><br>**Constraints**: *Minimum Length*: `36`, *Maximum Length*: `36`, *Pattern*: `^[{]?[0-9a-fA-F]{8}-([0-9a-fA-F]{4}-){3}[0-9a-fA-F]{12}[}]?$` |
 | `requestOptions` | `RequestOptions \| undefined` | Optional | Pass additional request options. |
 
 ## Response Type
 
-This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `result` property of this instance returns the response data which is of type [InlineResponse2021](../../doc/models/inline-response-2021.md).
+**200**: SUCCESS
+
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `result` property of this instance returns the response data which is of type [`InlineResponse2021`](../../doc/models/inline-response-2021.md).
 
 ## Example Usage
 
@@ -125,16 +162,41 @@ const requestId = '123e4567-e89b-12d3-a456-426614174000';
 const sessionId = 'c3e332f0-1bb2-4f50-a96b-e075bbb71e68';
 
 try {
-  const { result, ...httpResponse } = await chargingController.stop(
-  requestId,
-  sessionId
-);
-  // Get more response info...
-  // const { statusCode, headers } = httpResponse;
+  const response = await chargingController.stop(
+    requestId,
+    sessionId
+  );
+
+  // Extracting fully parsed response body.
+  console.log(response.result);
+
+  // Extracting response status code.
+  console.log(response.statusCode);
+  // Extracting response headers.
+  console.log(response.headers);
+  // Extracting response body of type `string | Stream`
+  console.log(response.body);
 } catch (error) {
   if (error instanceof ApiError) {
-    const errors = error.result;
-    // const { statusCode, headers } = error;
+    // Extracting response error status code.
+    console.log(error.statusCode);
+    // Extracting response error headers.
+    console.log(error.headers);
+    // Extracting response error body of type `string | Stream`.
+    console.log(error.body);
+    if (error instanceof BadRequestError) {
+      console.log(error.result);
+    } else if (error instanceof UnauthorizedError) {
+      console.log(error.result);
+    } else if (error instanceof V2ChargeSessionStop404Error) {
+      console.log(error.result);
+    } else if (error instanceof TooManyRequestsError) {
+      console.log(error.result);
+    } else if (error instanceof InternalServerError) {
+      console.log(error.result);
+    } else if (error instanceof ServiceunavailableError) {
+      console.log(error.result);
+    }
   }
 }
 ```
@@ -154,7 +216,7 @@ try {
 |  --- | --- | --- |
 | 400 | The server cannot or will not process the request due to something that is perceived to be a client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing). | [`BadRequestError`](../../doc/models/bad-request-error.md) |
 | 401 | The request has not been applied because it lacks valid authentication credentials for the target resource. | [`UnauthorizedError`](../../doc/models/unauthorized-error.md) |
-| 404 | Location Not Found | [`NotFoundError`](../../doc/models/not-found-error.md) |
+| 404 | Location Not Found | [`V2ChargeSessionStop404Error`](../../doc/models/v2-charge-session-stop-404-error.md) |
 | 429 | The Request reached maximum allocated rate limit | [`TooManyRequestsError`](../../doc/models/too-many-requests-error.md) |
 | 500 | Internal Server error | [`InternalServerError`](../../doc/models/internal-server-error.md) |
 | 503 | Service unavailable | [`ServiceunavailableError`](../../doc/models/serviceunavailable-error.md) |
@@ -172,17 +234,23 @@ async getChargeSessionRetrieve(
 ): Promise<ApiResponse<GetChargeSessionRetrieveResponse200Json>>
 ```
 
+## Authentication
+
+This endpoint requires [BearerAuth](../../doc/auth/oauth-2-client-credentials-grant.md)
+
 ## Parameters
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `requestId` | `string` | Header, Required | RequestId must be unique identifier value that can be used by the consumer to correlate each request /response .<br>Format.<br> Its canonical textual representation, the 16 octets of a UUID are represented as 32 hexadecimal (base-16) digits, displayed in five groups separated by hyphens, in the form 8-4-4-4-12 for a total of 36 characters (32 hexadecimal characters and 4 hyphens) <br> |
-| `sessionId` | `string` | Query, Required | Session Id<br>**Constraints**: *Minimum Length*: `36`, *Maximum Length*: `36`, *Pattern*: `^[{]?[0-9a-fA-F]{8}-([0-9a-fA-F]{4}-){3}[0-9a-fA-F]{12}[}]?$` |
+| `sessionId` | `string` | Query, Required | Session Id<br><br>**Constraints**: *Minimum Length*: `36`, *Maximum Length*: `36`, *Pattern*: `^[{]?[0-9a-fA-F]{8}-([0-9a-fA-F]{4}-){3}[0-9a-fA-F]{12}[}]?$` |
 | `requestOptions` | `RequestOptions \| undefined` | Optional | Pass additional request options. |
 
 ## Response Type
 
-This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `result` property of this instance returns the response data which is of type [GetChargeSessionRetrieveResponse200Json](../../doc/models/get-charge-session-retrieve-response-200-json.md).
+**200**: Success
+
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `result` property of this instance returns the response data which is of type [`GetChargeSessionRetrieveResponse200Json`](../../doc/models/get-charge-session-retrieve-response-200-json.md).
 
 ## Example Usage
 
@@ -192,16 +260,41 @@ const requestId = '123e4567-e89b-12d3-a456-426614174000';
 const sessionId = 'c3e332f0-1bb2-4f50-a96b-e075bbb71e68';
 
 try {
-  const { result, ...httpResponse } = await chargingController.getChargeSessionRetrieve(
-  requestId,
-  sessionId
-);
-  // Get more response info...
-  // const { statusCode, headers } = httpResponse;
+  const response = await chargingController.getChargeSessionRetrieve(
+    requestId,
+    sessionId
+  );
+
+  // Extracting fully parsed response body.
+  console.log(response.result);
+
+  // Extracting response status code.
+  console.log(response.statusCode);
+  // Extracting response headers.
+  console.log(response.headers);
+  // Extracting response body of type `string | Stream`
+  console.log(response.body);
 } catch (error) {
   if (error instanceof ApiError) {
-    const errors = error.result;
-    // const { statusCode, headers } = error;
+    // Extracting response error status code.
+    console.log(error.statusCode);
+    // Extracting response error headers.
+    console.log(error.headers);
+    // Extracting response error body of type `string | Stream`.
+    console.log(error.body);
+    if (error instanceof BadRequestError) {
+      console.log(error.result);
+    } else if (error instanceof UnauthorizedError) {
+      console.log(error.result);
+    } else if (error instanceof V2ChargeSessionRetrieve404Error) {
+      console.log(error.result);
+    } else if (error instanceof TooManyRequestsError) {
+      console.log(error.result);
+    } else if (error instanceof InternalServerError) {
+      console.log(error.result);
+    } else if (error instanceof ServiceunavailableError) {
+      console.log(error.result);
+    }
   }
 }
 ```
@@ -235,7 +328,7 @@ try {
 |  --- | --- | --- |
 | 400 | The server cannot or will not process the request due to something that is perceived to be a client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing). | [`BadRequestError`](../../doc/models/bad-request-error.md) |
 | 401 | The request has not been applied because it lacks valid authentication credentials for the target resource. | [`UnauthorizedError`](../../doc/models/unauthorized-error.md) |
-| 404 | Location Not Found | [`NotFoundError`](../../doc/models/not-found-error.md) |
+| 404 | Location Not Found | [`V2ChargeSessionRetrieve404Error`](../../doc/models/v2-charge-session-retrieve-404-error.md) |
 | 429 | The Request reached maximum allocated rate limit | [`TooManyRequestsError`](../../doc/models/too-many-requests-error.md) |
 | 500 | Internal Server error | [`InternalServerError`](../../doc/models/internal-server-error.md) |
 | 503 | Service unavailable | [`ServiceunavailableError`](../../doc/models/serviceunavailable-error.md) |
@@ -253,17 +346,23 @@ async active(
 ): Promise<ApiResponse<ActiveResponse200Json>>
 ```
 
+## Authentication
+
+This endpoint requires [BearerAuth](../../doc/auth/oauth-2-client-credentials-grant.md)
+
 ## Parameters
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `requestId` | `string` | Header, Required | RequestId must be unique identifier value that can be used by the consumer to correlate each request /response .<br>Format.<br> Its canonical textual representation, the 16 octets of a UUID are represented as 32 hexadecimal (base-16) digits, displayed in five groups separated by hyphens, in the form 8-4-4-4-12 for a total of 36 characters (32 hexadecimal characters and 4 hyphens) <br> |
-| `emaId` | `string` | Query, Required | Emobility Account Identifier(Ema-ID)<br>**Constraints**: *Minimum Length*: `14`, *Maximum Length*: `19` |
+| `emaId` | `string` | Query, Required | Emobility Account Identifier(Ema-ID)<br><br>**Constraints**: *Minimum Length*: `14`, *Maximum Length*: `19` |
 | `requestOptions` | `RequestOptions \| undefined` | Optional | Pass additional request options. |
 
 ## Response Type
 
-This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `result` property of this instance returns the response data which is of type [ActiveResponse200Json](../../doc/models/active-response-200-json.md).
+**200**: SUCCESS
+
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `result` property of this instance returns the response data which is of type [`ActiveResponse200Json`](../../doc/models/active-response-200-json.md).
 
 ## Example Usage
 
@@ -273,16 +372,28 @@ const requestId = '123e4567-e89b-12d3-a456-426614174000';
 const emaId = 'NL-TNM-C0216599X-A';
 
 try {
-  const { result, ...httpResponse } = await chargingController.active(
-  requestId,
-  emaId
-);
-  // Get more response info...
-  // const { statusCode, headers } = httpResponse;
+  const response = await chargingController.active(
+    requestId,
+    emaId
+  );
+
+  // Extracting fully parsed response body.
+  console.log(response.result);
+
+  // Extracting response status code.
+  console.log(response.statusCode);
+  // Extracting response headers.
+  console.log(response.headers);
+  // Extracting response body of type `string | Stream`
+  console.log(response.body);
 } catch (error) {
   if (error instanceof ApiError) {
-    const errors = error.result;
-    // const { statusCode, headers } = error;
+    // Extracting response error status code.
+    console.log(error.statusCode);
+    // Extracting response error headers.
+    console.log(error.headers);
+    // Extracting response error body of type `string | Stream`.
+    console.log(error.body);
   }
 }
 ```

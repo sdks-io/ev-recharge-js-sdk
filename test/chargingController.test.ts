@@ -12,12 +12,12 @@ import {
   InlineResponse202,
   InlineResponse2021,
 } from '../src';
-import { testClient } from './testClient';
+import { testClient } from './testClient.js';
 import {
   expectHeadersToMatch,
   expectMatchingWithOptions,
   makeApiCall,
-} from './testHelper';
+} from './testHelper.js';
 
 describe('ChargingController', () => {
   let controller : ChargingController;
