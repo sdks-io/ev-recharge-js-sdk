@@ -13,11 +13,13 @@ Accessibility of the Location
 |  --- | --- | --- | --- |
 | `status` | [`AccessibilityStatusEnum \| undefined`](../../doc/models/accessibility-status-enum.md) | Optional | Accessibility Status |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "status": "FreePublic"
-}
+```ts
+import { AccessibilityStatusEnum, AccessibilityV2 } from 'ev-recharge-sdk';
+
+const accessibilityV2: AccessibilityV2 = {
+  status: AccessibilityStatusEnum.FreePublic,
+};
 ```
 

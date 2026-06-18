@@ -18,19 +18,21 @@ A Marker is a place on the map that represent multiple Locations at the same spo
 | `operatorName` | `string \| undefined` | Optional | Operator of this Shell Recharge Location |
 | `markerType` | `string` | Required, Constant | Type of the Marker, in this case it will always be MultiLocation<br><br>**Value**: `'MultiLocation'` |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "locationCount": 6.0,
-  "evseCount": 10.0,
-  "maxPower": 42.0,
-  "operatorName": "TheNewMotion",
-  "markerType": "MultiLocation",
-  "coordinates": {
-    "latitude": 39.14,
-    "longitude": 36.94
-  }
-}
+```ts
+import { MultiLocationMarkerV2 } from 'ev-recharge-sdk';
+
+const multiLocationMarkerV2: MultiLocationMarkerV2 = {
+  markerType: 'MultiLocation',
+  coordinates: {
+    latitude: 39.14,
+    longitude: 36.94,
+  },
+  locationCount: 6,
+  evseCount: 10,
+  maxPower: 42,
+  operatorName: 'TheNewMotion',
+};
 ```
 

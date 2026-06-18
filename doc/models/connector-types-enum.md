@@ -28,3 +28,11 @@
 | `Tesla` |
 | `Unspecified` |
 
+## Example
+
+```ts
+import { ConnectorTypesEnum } from 'ev-recharge-sdk';
+
+const connectorTypes = ConnectorTypesEnum.Type2;
+```
+

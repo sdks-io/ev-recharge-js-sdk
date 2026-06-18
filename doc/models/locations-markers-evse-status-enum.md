@@ -16,3 +16,11 @@ Filter by Locations that have the given status
 | `Unavailable` |
 | `Unknown` |
 
+## Example
+
+```ts
+import { LocationsMarkersEvseStatusEnum } from 'ev-recharge-sdk';
+
+const locationsMarkersEvseStatus = LocationsMarkersEvseStatusEnum.Available;
+```
+

@@ -21,21 +21,26 @@ A Marker is a place on the map that represent a single Location
 | `operatorName` | `string \| undefined` | Optional | Operator of this Shell Recharge Location |
 | `markerType` | `string` | Required, Constant | Type of the Marker, in this case it will always be SingleLocation<br><br>**Value**: `'SingleLocation'` |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "status": "Available",
-  "evseCount": 12.0,
-  "locationCount": 6.0,
-  "locationUid": "2057411",
-  "operatorName": "TheNewMotion",
-  "markerType": "SingleLocation",
-  "coordinates": {
-    "latitude": 39.14,
-    "longitude": 36.94
+```ts
+import {
+  SingleLocationMarkerStatusEnum,
+  SingleLocationMarkerV2,
+} from 'ev-recharge-sdk';
+
+const singleLocationMarkerV2: SingleLocationMarkerV2 = {
+  markerType: 'SingleLocation',
+  status: SingleLocationMarkerStatusEnum.Available,
+  coordinates: {
+    latitude: 39.14,
+    longitude: 36.94,
   },
-  "maxPower": 45.08
-}
+  evseCount: 12,
+  maxPower: 75.6,
+  locationCount: 6,
+  locationUid: '2057411',
+  operatorName: 'TheNewMotion',
+};
 ```
 

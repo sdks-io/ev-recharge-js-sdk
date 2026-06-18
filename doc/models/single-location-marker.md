@@ -22,22 +22,27 @@ A Marker is a place on the map that represent a single Location
 | `authorizationMethods` | [`SingleLocationMarkerAuthorizationMethodsItemsEnum[] \| undefined`](../../doc/models/single-location-marker-authorization-methods-items-enum.md) | Optional | Methods that can be used to Authorize sessions on this EVSE |
 | `operatorId` | `string \| undefined` | Optional | Unique Id of the operator |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "markerType": "SingleLocation",
-  "uniqueKey": "2057411_1",
-  "status": "Available",
-  "evseCount": 12.0,
-  "maxPower": 42.0,
-  "geoHash": "sx",
-  "locationUid": 2057411,
-  "operatorId": "AT-HTB",
-  "coordinates": {
-    "latitude": 39.14,
-    "longitude": 36.94
-  }
-}
+```ts
+import {
+  SingleLocationMarker,
+  SingleLocationMarkerStatusEnum,
+} from 'ev-recharge-sdk';
+
+const singleLocationMarker: SingleLocationMarker = {
+  markerType: 'SingleLocation',
+  uniqueKey: '2057411_1',
+  status: SingleLocationMarkerStatusEnum.Available,
+  coordinates: {
+    latitude: 39.14,
+    longitude: 36.94,
+  },
+  evseCount: 12,
+  maxPower: 42,
+  geoHash: 'sx',
+  locationUid: 2057411,
+  operatorId: 'AT-HTB',
+};
 ```
 

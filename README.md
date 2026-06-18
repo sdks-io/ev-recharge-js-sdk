@@ -28,10 +28,10 @@ Go to the Shell Developer Portal: [https://developer.shell.com](https://develope
 Run the following command from your project directory to install the package from npm:
 
 ```bash
-npm install ev-recharge-sdk@2.1.0
+npm install ev-recharge-sdk@2.2.0
 ```
 
-For additional package details, see the [Npm page for the ev-recharge-sdk@2.1.0 npm](https://www.npmjs.com/package/ev-recharge-sdk/v/2.1.0).
+For additional package details, see the [Npm page for the ev-recharge-sdk@2.2.0 npm](https://www.npmjs.com/package/ev-recharge-sdk/v/2.2.0).
 
 ## Test the SDK
 
@@ -51,17 +51,17 @@ npm run test:coverage
 
 ## Initialize the API Client
 
-**_Note:_** Documentation for the client can be found [here.](https://www.github.com/sdks-io/ev-recharge-js-sdk/tree/2.1.0/doc/client.md)
+**_Note:_** Documentation for the client can be found [here.](https://www.github.com/sdks-io/ev-recharge-js-sdk/tree/2.2.0/doc/client.md)
 
 The following parameters are configurable for the API Client:
 
 | Parameter | Type | Description |
 |  --- | --- | --- |
-| environment | [`Environment`](https://www.github.com/sdks-io/ev-recharge-js-sdk/tree/2.1.0/README.md#environments) | The API environment. <br> **Default: `Environment.Production`** |
+| environment | [`Environment`](https://www.github.com/sdks-io/ev-recharge-js-sdk/tree/2.2.0/README.md#environments) | The API environment. <br> **Default: `Environment.SIT`** |
 | timeout | `number` | Timeout for API calls.<br>*Default*: `0` |
-| httpClientOptions | [`Partial<HttpClientOptions>`](https://www.github.com/sdks-io/ev-recharge-js-sdk/tree/2.1.0/doc/http-client-options.md) | Stable configurable http client options. |
+| httpClientOptions | [`Partial<HttpClientOptions>`](https://www.github.com/sdks-io/ev-recharge-js-sdk/tree/2.2.0/doc/http-client-options.md) | Stable configurable http client options. |
 | unstableHttpClientOptions | `any` | Unstable configurable http client options. |
-| clientCredentialsAuthCredentials | [`ClientCredentialsAuthCredentials`](https://www.github.com/sdks-io/ev-recharge-js-sdk/tree/2.1.0/doc/auth/oauth-2-client-credentials-grant.md) | The credential object for clientCredentialsAuth |
+| clientCredentialsAuthCredentials | [`ClientCredentialsAuthCredentials`](https://www.github.com/sdks-io/ev-recharge-js-sdk/tree/2.2.0/doc/auth/oauth-2-client-credentials-grant.md) | The credential object for clientCredentialsAuth |
 
 The API client can be initialized as follows:
 
@@ -76,7 +76,7 @@ const client = new Client({
     oAuthClientSecret: 'OAuthClientSecret'
   },
   timeout: 0,
-  environment: Environment.Production,
+  environment: Environment.SIT,
 });
 ```
 
@@ -97,7 +97,7 @@ const fileContent = fs.readFileSync(absolutePath, 'utf-8');
 const client = Client.fromJsonConfig(fileContent);
 ```
 
-See the [Configuration-Based Client Initialization](https://www.github.com/sdks-io/ev-recharge-js-sdk/tree/2.1.0/doc/configuration-based-client-initialization.md) section for details.
+See the [Configuration-Based Client Initialization](https://www.github.com/sdks-io/ev-recharge-js-sdk/tree/2.2.0/doc/configuration-based-client-initialization.md) section for details.
 
 ### Environment-Based Client Initialization
 
@@ -119,7 +119,7 @@ if (fs.existsSync(absolutePath)) {
 const client = Client.fromEnvironment(process.env);
 ```
 
-See the [Environment-Based Client Initialization](https://www.github.com/sdks-io/ev-recharge-js-sdk/tree/2.1.0/doc/environment-based-client-initialization.md) section for details.
+See the [Environment-Based Client Initialization](https://www.github.com/sdks-io/ev-recharge-js-sdk/tree/2.2.0/doc/environment-based-client-initialization.md) section for details.
 
 ## Environments
 
@@ -129,36 +129,36 @@ The SDK can be configured to use a different environment for making API calls. A
 
 | Name | Description |
 |  --- | --- |
-| Production | **Default** Production Server |
-| Environment2 | Test Server |
+| SIT | **Default** |
+| Production | - |
 
 ## Authorization
 
 This API uses the following authentication schemes.
 
-* [`BearerAuth (OAuth 2 Client Credentials Grant)`](https://www.github.com/sdks-io/ev-recharge-js-sdk/tree/2.1.0/doc/auth/oauth-2-client-credentials-grant.md)
+* [`BearerAuth (OAuth 2 Client Credentials Grant)`](https://www.github.com/sdks-io/ev-recharge-js-sdk/tree/2.2.0/doc/auth/oauth-2-client-credentials-grant.md)
 
 ## List of APIs
 
-* [Locations](https://www.github.com/sdks-io/ev-recharge-js-sdk/tree/2.1.0/doc/controllers/locations.md)
-* [Charging](https://www.github.com/sdks-io/ev-recharge-js-sdk/tree/2.1.0/doc/controllers/charging.md)
+* [Locations](https://www.github.com/sdks-io/ev-recharge-js-sdk/tree/2.2.0/doc/controllers/locations.md)
+* [Charging](https://www.github.com/sdks-io/ev-recharge-js-sdk/tree/2.2.0/doc/controllers/charging.md)
 
 ## SDK Infrastructure
 
 ### Configuration
 
-* [HttpClientOptions](https://www.github.com/sdks-io/ev-recharge-js-sdk/tree/2.1.0/doc/http-client-options.md)
-* [RetryConfiguration](https://www.github.com/sdks-io/ev-recharge-js-sdk/tree/2.1.0/doc/retry-configuration.md)
-* [ProxySettings](https://www.github.com/sdks-io/ev-recharge-js-sdk/tree/2.1.0/doc/proxy-settings.md)
-* [Configuration-Based Client Initialization](https://www.github.com/sdks-io/ev-recharge-js-sdk/tree/2.1.0/doc/configuration-based-client-initialization.md)
-* [Environment-Based Client Initialization](https://www.github.com/sdks-io/ev-recharge-js-sdk/tree/2.1.0/doc/environment-based-client-initialization.md)
+* [HttpClientOptions](https://www.github.com/sdks-io/ev-recharge-js-sdk/tree/2.2.0/doc/http-client-options.md)
+* [RetryConfiguration](https://www.github.com/sdks-io/ev-recharge-js-sdk/tree/2.2.0/doc/retry-configuration.md)
+* [ProxySettings](https://www.github.com/sdks-io/ev-recharge-js-sdk/tree/2.2.0/doc/proxy-settings.md)
+* [Configuration-Based Client Initialization](https://www.github.com/sdks-io/ev-recharge-js-sdk/tree/2.2.0/doc/configuration-based-client-initialization.md)
+* [Environment-Based Client Initialization](https://www.github.com/sdks-io/ev-recharge-js-sdk/tree/2.2.0/doc/environment-based-client-initialization.md)
 
 ### HTTP
 
-* [HttpRequest](https://www.github.com/sdks-io/ev-recharge-js-sdk/tree/2.1.0/doc/http-request.md)
+* [HttpRequest](https://www.github.com/sdks-io/ev-recharge-js-sdk/tree/2.2.0/doc/http-request.md)
 
 ### Utilities
 
-* [ApiResponse](https://www.github.com/sdks-io/ev-recharge-js-sdk/tree/2.1.0/doc/api-response.md)
-* [ApiError](https://www.github.com/sdks-io/ev-recharge-js-sdk/tree/2.1.0/doc/api-error.md)
+* [ApiResponse](https://www.github.com/sdks-io/ev-recharge-js-sdk/tree/2.2.0/doc/api-response.md)
+* [ApiError](https://www.github.com/sdks-io/ev-recharge-js-sdk/tree/2.2.0/doc/api-error.md)
 

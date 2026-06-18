@@ -30,3 +30,11 @@ Filter by Locations that have Connectors with these Connector Types
 | `Tesla` |
 | `Unspecified` |
 
+## Example
+
+```ts
+import { NearbyLocationsConnectorTypesEnum } from 'ev-recharge-sdk';
+
+const nearbyLocationsConnectorTypes = NearbyLocationsConnectorTypesEnum.Type3;
+```
+

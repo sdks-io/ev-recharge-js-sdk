@@ -32,7 +32,9 @@ Type of the connector in the EVSE unit.
 
 ## Example
 
-```
-Type2
+```ts
+import { ConnectorVOConnectorTypeEnum } from 'ev-recharge-sdk';
+
+const connectorVOConnectorType = ConnectorVOConnectorTypeEnum.Type3;
 ```
 

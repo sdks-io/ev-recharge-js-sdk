@@ -18,7 +18,9 @@ Minimum of all status values in the Marker, e.g. if at least one Evse in the Mar
 
 ## Example
 
-```
-Available
+```ts
+import { SingleLocationMarkerStatusEnum } from 'ev-recharge-sdk';
+
+const singleLocationMarkerStatus = SingleLocationMarkerStatusEnum.Available;
 ```
 

@@ -16,14 +16,19 @@ Electrical Properties of the Connector
 | `amperage` | `number \| undefined` | Optional | Electric Current in Amperes for this connector |
 | `maxElectricPower` | `number \| undefined` | Optional | Power in Kilowatts for this connector |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "powerType": "AC1Phase",
-  "voltage": 230.0,
-  "amperage": 16.0,
-  "maxElectricPower": 3.7
-}
+```ts
+import {
+  ElectricalPropertiesPowerTypeEnum,
+  ElectricalPropertiesV2,
+} from 'ev-recharge-sdk';
+
+const electricalPropertiesV2: ElectricalPropertiesV2 = {
+  powerType: ElectricalPropertiesPowerTypeEnum.AC1Phase,
+  voltage: 230,
+  amperage: 16,
+  maxElectricPower: 3.7,
+};
 ```
 

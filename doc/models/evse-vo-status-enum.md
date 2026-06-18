@@ -18,7 +18,9 @@ The current status of the EVSE units availability
 
 ## Example
 
-```
-Available
+```ts
+import { EvseVOStatusEnum } from 'ev-recharge-sdk';
+
+const evseVOStatus = EvseVOStatusEnum.Available;
 ```
 

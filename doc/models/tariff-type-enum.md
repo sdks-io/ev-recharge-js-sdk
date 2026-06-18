@@ -16,3 +16,11 @@ Tariff type classification
 | `REIMBURSEMENT` |
 | `VMSP` |
 
+## Example
+
+```ts
+import { TariffTypeEnum } from 'ev-recharge-sdk';
+
+const tariffType = TariffTypeEnum.REIMBURSEMENT;
+```
+

@@ -18,17 +18,19 @@
 | `stoppedAt` | `string \| null \| undefined` | Optional | When the session is stopped |
 | `sessionState` | [`ChargeRetrieveState \| undefined`](../../doc/models/charge-retrieve-state.md) | Optional | - |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "id": "78b5d7a3-bdba-43d7-9851-1c84fcddb782",
-  "userId": "281482b6-2c9a-4fd1-b3ea-1928edb40ef9",
-  "emaId": "NL-TNM-C00122045-K",
-  "evseId": "NL*TNM*E02003451*0",
-  "startedAt": "08/19/2015 11:20:27",
-  "stoppedAt": "08/19/2015 11:20:27",
-  "lastUpdated": "lastUpdated2"
-}
+```ts
+import { DataRetrieve } from 'ev-recharge-sdk';
+
+const dataRetrieve: DataRetrieve = {
+  id: '78b5d7a3-bdba-43d7-9851-1c84fcddb782',
+  userId: '281482b6-2c9a-4fd1-b3ea-1928edb40ef9',
+  emaId: 'NL-TNM-C00122045-K',
+  evseId: 'NL*TNM*E02003451*0',
+  lastUpdated: 'lastUpdated8',
+  startedAt: '2015-08-19T11:20:27Z',
+  stoppedAt: '2015-08-19T11:20:27Z',
+};
 ```
 

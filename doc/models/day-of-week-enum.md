@@ -19,7 +19,9 @@
 
 ## Example
 
-```
-MONDAY
+```ts
+import { DayOfWeekEnum } from 'ev-recharge-sdk';
+
+const dayOfWeek = DayOfWeekEnum.SUNDAY;
 ```
 

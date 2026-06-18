@@ -13,17 +13,22 @@
 | `status` | [`GetChargeSessionRetrieveResponse200JsonStatusEnum`](../../doc/models/get-charge-session-retrieve-response-200-json-status-enum.md) | Required | Indicates overall status of the request |
 | `data` | [`InlineResponse202Data[]`](../../doc/models/inline-response-202-data.md) | Required | - |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "requestId": "9d2dee33-7803-485a-a2b1-2c7538e597ee",
-  "status": "SUCCESS",
-  "data": [
+```ts
+import {
+  GetChargeSessionRetrieveResponse200JsonStatusEnum,
+  InlineResponse202,
+} from 'ev-recharge-sdk';
+
+const inlineResponse202: InlineResponse202 = {
+  requestId: '9d2dee33-7803-485a-a2b1-2c7538e597ee',
+  status: GetChargeSessionRetrieveResponse200JsonStatusEnum.SUCCESS,
+  data: [
     {
-      "sessionId": "c3e332f0-1bb2-4f50-a96b-e075bbb71e68"
+      sessionId: 'c3e332f0-1bb2-4f50-a96b-e075bbb71e68',
     }
-  ]
-}
+  ],
+};
 ```
 

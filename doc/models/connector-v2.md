@@ -16,19 +16,25 @@ An EVSE can have one or many Connectors. Each Connector will normally have a dif
 | `connectorType` | [`ConnectorVOConnectorTypeEnum \| undefined`](../../doc/models/connector-vo-connector-type-enum.md) | Optional | Type of the connector in the EVSE unit. |
 | `electricalProperties` | [`ElectricalPropertiesV2 \| undefined`](../../doc/models/electrical-properties-v2.md) | Optional | Electrical Properties of the Connector |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "uid": "2",
-  "externalId": "01000861_1_21",
-  "connectorType": "Type2",
-  "electricalProperties": {
-    "powerType": "AC1Phase",
-    "voltage": 110.62,
-    "amperage": 46.4,
-    "maxElectricPower": 232.04
-  }
-}
+```ts
+import {
+  ConnectorV2,
+  ConnectorVOConnectorTypeEnum,
+  ElectricalPropertiesPowerTypeEnum,
+} from 'ev-recharge-sdk';
+
+const connectorV2: ConnectorV2 = {
+  uid: '2',
+  externalId: '01000861_1_21',
+  connectorType: ConnectorVOConnectorTypeEnum.Type2,
+  electricalProperties: {
+    powerType: ElectricalPropertiesPowerTypeEnum.AC1Phase,
+    voltage: 110.62,
+    amperage: 46.4,
+    maxElectricPower: 232.04,
+  },
+};
 ```
 

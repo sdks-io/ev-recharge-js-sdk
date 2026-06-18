@@ -22,27 +22,29 @@
 | `operatorId` | `string \| undefined` | Optional | Unique Id of the operator |
 | `openTwentyFourSeven` | `boolean \| undefined` | Optional | Whether the location is open 24/7 |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "uid": "NL*MKS*E0000001*0",
-  "externalId": "01001188",
-  "operatorName": "TheNewMotion",
-  "updated": "10/06/2021 10:44:24",
-  "locationType": "Unknown",
-  "operatorId": "AT-HTB",
-  "openTwentyFourSeven": true,
-  "coordinates": {
-    "latitude": 39.14,
-    "longitude": 36.94
+```ts
+import { SearchByIdLocationRespone } from 'ev-recharge-sdk';
+
+const searchByIdLocationRespone: SearchByIdLocationRespone = {
+  uid: 'NL*MKS*E0000001*0',
+  externalId: '01001188',
+  coordinates: {
+    latitude: 39.14,
+    longitude: 36.94,
   },
-  "address": {
-    "streetAndNumber": "streetAndNumber2",
-    "postalCode": "postalCode8",
-    "city": "city6",
-    "country": "country0"
-  }
-}
+  operatorName: 'TheNewMotion',
+  address: {
+    streetAndNumber: 'streetAndNumber2',
+    postalCode: 'postalCode8',
+    city: 'city6',
+    country: 'country0',
+  },
+  updated: '2021-10-06T10:44:24Z',
+  locationType: 'Unknown',
+  operatorId: 'AT-HTB',
+  openTwentyFourSeven: true,
+};
 ```
 

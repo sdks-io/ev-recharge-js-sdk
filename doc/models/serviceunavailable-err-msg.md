@@ -14,16 +14,20 @@
 | `description` | `string \| undefined` | Optional | Technical details of the error message, the example which is given in the sample payload is one of the scenarios. actual response will vary based on the technical nature |
 | `details` | `string[] \| undefined` | Optional | - |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "code": "E0014",
-  "message": "Connectivity Error",
-  "description": "Service Unavailable",
-  "details": [
-    "details1"
-  ]
-}
+```ts
+import { ServiceunavailableErrMsg } from 'ev-recharge-sdk';
+
+const serviceunavailableErrMsg: ServiceunavailableErrMsg = {
+  code: 'E0014',
+  message: 'Connectivity Error',
+  description: 'Service Unavailable',
+  details: [
+    'details5',
+    'details6',
+    'details7'
+  ],
+};
 ```
 

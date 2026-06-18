@@ -12,12 +12,14 @@
 | `language` | `string` | Required | ISO language code |
 | `text` | `string` | Required | Human readable tariff description |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "language": "en",
-  "text": "€0.30 per kWh"
-}
+```ts
+import { TariffAltText } from 'ev-recharge-sdk';
+
+const tariffAltText: TariffAltText = {
+  language: 'en',
+  text: '€0.30 per kWh',
+};
 ```
 

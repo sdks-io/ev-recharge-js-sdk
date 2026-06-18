@@ -48,8 +48,8 @@ export interface Configuration {
 
 /** Environments available for API */
 export enum Environment {
-  Production = 'production',
-  Environment2 = 'environment2',
+  SIT = 'SIT',
+  Production = 'Production',
 }
 
 export namespace Configuration {

@@ -17,131 +17,194 @@ An EVSE can have one or many Connectors. Each Connector will normally have a dif
 | `electricalProperties` | [`ElectricalPropertiesV2 \| undefined`](../../doc/models/electrical-properties-v2.md) | Optional | Electrical Properties of the Connector |
 | `tariffs` | [`TariffV2[] \| undefined`](../../doc/models/tariff-v2.md) | Optional | Tariffs applicable to this Connector |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "uid": "2",
-  "externalId": "01000861_1_21",
-  "connectorType": "Type2",
-  "electricalProperties": {
-    "powerType": "AC1Phase",
-    "voltage": 110.62,
-    "amperage": 46.4,
-    "maxElectricPower": 232.04
+```ts
+import {
+  ConnectorVOConnectorTypeEnum,
+  ElectricalPropertiesPowerTypeEnum,
+  SearchByIdConnector,
+  TariffTypeEnum,
+  TypeEnum,
+} from 'ev-recharge-sdk';
+
+const searchByIdConnector: SearchByIdConnector = {
+  uid: '2',
+  externalId: '01000861_1_21',
+  connectorType: ConnectorVOConnectorTypeEnum.Type2,
+  electricalProperties: {
+    powerType: ElectricalPropertiesPowerTypeEnum.AC1Phase,
+    voltage: 110.62,
+    amperage: 46.4,
+    maxElectricPower: 232.04,
   },
-  "tariffs": [
+  tariffs: [
     {
-      "tariffId": "tariffId4",
-      "tariffType": "DRIVER",
-      "powerRange": {
-        "min": 102,
-        "max": 20
+      tariffId: 'tariffId4',
+      tariffType: TariffTypeEnum.DRIVER,
+      powerRange: {
+        min: 102,
+        max: 20,
       },
-      "internalId": "internalId2",
-      "operatorId": "operatorId8",
-      "providerId": "providerId2",
-      "currency": "currency8",
-      "tariffAltText": [
+      internalId: 'internalId2',
+      operatorId: 'operatorId8',
+      providerId: 'providerId2',
+      currency: 'currency8',
+      tariffAltText: [
         {
-          "language": "language8",
-          "text": "text6"
+          language: 'language8',
+          text: 'text6',
         }
       ],
-      "minPrice": 189.42,
-      "maxPrice": 247.64,
-      "elements": [
+      minPrice: 189.42,
+      maxPrice: 247.64,
+      elements: [
         {
-          "priceComponents": [
+          priceComponents: [
             {
-              "type": "TIME",
-              "stepSize": 124,
-              "price": 196.82,
-              "vat": 137.74
+              type: TypeEnum.TIME,
+              stepSize: 124,
+              price: 196.82,
+              vat: 137.74,
             },
             {
-              "type": "TIME",
-              "stepSize": 124,
-              "price": 196.82,
-              "vat": 137.74
+              type: TypeEnum.TIME,
+              stepSize: 124,
+              price: 196.82,
+              vat: 137.74,
             },
             {
-              "type": "TIME",
-              "stepSize": 124,
-              "price": 196.82,
-              "vat": 137.74
+              type: TypeEnum.TIME,
+              stepSize: 124,
+              price: 196.82,
+              vat: 137.74,
             }
           ],
-          "restrictions": {
-            "startTime": "startTime0",
-            "endTime": "endTime2",
-            "startDate": "2016-03-13T12:52:32.123Z",
-            "endDate": "2016-03-13T12:52:32.123Z",
-            "minKwh": 247.22
-          }
+          restrictions: {
+            startTime: 'startTime0',
+            endTime: 'endTime2',
+            startDate: '2016-03-13T12:52:32.123Z',
+            endDate: '2016-03-13T12:52:32.123Z',
+            minKwh: 247.22,
+          },
         }
       ],
-      "startDateTime": "2016-03-13T12:52:32.123Z",
-      "endDateTime": "2016-03-13T12:52:32.123Z",
-      "lastUpdated": "2016-03-13T12:52:32.123Z",
-      "createdBy": "createdBy4"
+      startDateTime: '2016-03-13T12:52:32.123Z',
+      endDateTime: '2016-03-13T12:52:32.123Z',
+      lastUpdated: '2016-03-13T12:52:32.123Z',
+      createdBy: 'createdBy4',
     },
     {
-      "tariffId": "tariffId4",
-      "tariffType": "DRIVER",
-      "powerRange": {
-        "min": 102,
-        "max": 20
+      tariffId: 'tariffId4',
+      tariffType: TariffTypeEnum.DRIVER,
+      powerRange: {
+        min: 102,
+        max: 20,
       },
-      "internalId": "internalId2",
-      "operatorId": "operatorId8",
-      "providerId": "providerId2",
-      "currency": "currency8",
-      "tariffAltText": [
+      internalId: 'internalId2',
+      operatorId: 'operatorId8',
+      providerId: 'providerId2',
+      currency: 'currency8',
+      tariffAltText: [
         {
-          "language": "language8",
-          "text": "text6"
+          language: 'language8',
+          text: 'text6',
         }
       ],
-      "minPrice": 189.42,
-      "maxPrice": 247.64,
-      "elements": [
+      minPrice: 189.42,
+      maxPrice: 247.64,
+      elements: [
         {
-          "priceComponents": [
+          priceComponents: [
             {
-              "type": "TIME",
-              "stepSize": 124,
-              "price": 196.82,
-              "vat": 137.74
+              type: TypeEnum.TIME,
+              stepSize: 124,
+              price: 196.82,
+              vat: 137.74,
             },
             {
-              "type": "TIME",
-              "stepSize": 124,
-              "price": 196.82,
-              "vat": 137.74
+              type: TypeEnum.TIME,
+              stepSize: 124,
+              price: 196.82,
+              vat: 137.74,
             },
             {
-              "type": "TIME",
-              "stepSize": 124,
-              "price": 196.82,
-              "vat": 137.74
+              type: TypeEnum.TIME,
+              stepSize: 124,
+              price: 196.82,
+              vat: 137.74,
             }
           ],
-          "restrictions": {
-            "startTime": "startTime0",
-            "endTime": "endTime2",
-            "startDate": "2016-03-13T12:52:32.123Z",
-            "endDate": "2016-03-13T12:52:32.123Z",
-            "minKwh": 247.22
-          }
+          restrictions: {
+            startTime: 'startTime0',
+            endTime: 'endTime2',
+            startDate: '2016-03-13T12:52:32.123Z',
+            endDate: '2016-03-13T12:52:32.123Z',
+            minKwh: 247.22,
+          },
         }
       ],
-      "startDateTime": "2016-03-13T12:52:32.123Z",
-      "endDateTime": "2016-03-13T12:52:32.123Z",
-      "lastUpdated": "2016-03-13T12:52:32.123Z",
-      "createdBy": "createdBy4"
+      startDateTime: '2016-03-13T12:52:32.123Z',
+      endDateTime: '2016-03-13T12:52:32.123Z',
+      lastUpdated: '2016-03-13T12:52:32.123Z',
+      createdBy: 'createdBy4',
+    },
+    {
+      tariffId: 'tariffId4',
+      tariffType: TariffTypeEnum.DRIVER,
+      powerRange: {
+        min: 102,
+        max: 20,
+      },
+      internalId: 'internalId2',
+      operatorId: 'operatorId8',
+      providerId: 'providerId2',
+      currency: 'currency8',
+      tariffAltText: [
+        {
+          language: 'language8',
+          text: 'text6',
+        }
+      ],
+      minPrice: 189.42,
+      maxPrice: 247.64,
+      elements: [
+        {
+          priceComponents: [
+            {
+              type: TypeEnum.TIME,
+              stepSize: 124,
+              price: 196.82,
+              vat: 137.74,
+            },
+            {
+              type: TypeEnum.TIME,
+              stepSize: 124,
+              price: 196.82,
+              vat: 137.74,
+            },
+            {
+              type: TypeEnum.TIME,
+              stepSize: 124,
+              price: 196.82,
+              vat: 137.74,
+            }
+          ],
+          restrictions: {
+            startTime: 'startTime0',
+            endTime: 'endTime2',
+            startDate: '2016-03-13T12:52:32.123Z',
+            endDate: '2016-03-13T12:52:32.123Z',
+            minKwh: 247.22,
+          },
+        }
+      ],
+      startDateTime: '2016-03-13T12:52:32.123Z',
+      endDateTime: '2016-03-13T12:52:32.123Z',
+      lastUpdated: '2016-03-13T12:52:32.123Z',
+      createdBy: 'createdBy4',
     }
-  ]
-}
+  ],
+};
 ```
 

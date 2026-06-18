@@ -12,12 +12,14 @@
 | `code` | `string \| undefined` | Optional | Session code e.g InternalError |
 | `message` | `string \| undefined` | Optional | Session message |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "code": "code8",
-  "message": "message0"
-}
+```ts
+import { ChargeError } from 'ev-recharge-sdk';
+
+const chargeError: ChargeError = {
+  code: 'code4',
+  message: 'message6',
+};
 ```
 

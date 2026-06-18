@@ -18,7 +18,9 @@ Type of the price component
 
 ## Example
 
-```
-FLAT
+```ts
+import { TypeEnum } from 'ev-recharge-sdk';
+
+const type = TypeEnum.FLAT;
 ```
 

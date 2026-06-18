@@ -17,7 +17,9 @@ Power Type used in this connector.
 
 ## Example
 
-```
-AC1Phase
+```ts
+import { ElectricalPropertiesPowerTypeEnum } from 'ev-recharge-sdk';
+
+const electricalPropertiesPowerType = ElectricalPropertiesPowerTypeEnum.AC3Phase;
 ```
 

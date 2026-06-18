@@ -18,7 +18,9 @@ Source of the last update of the tariff details
 
 ## Example
 
-```
-TariffService
+```ts
+import { TariffVOUpdatedByEnum } from 'ev-recharge-sdk';
+
+const tariffVOUpdatedBy = TariffVOUpdatedByEnum.Feed;
 ```
 

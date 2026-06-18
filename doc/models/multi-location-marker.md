@@ -19,20 +19,22 @@ A Marker is a place on the map that represent multiple Locations at the same spo
 | `maxPower` | `number \| undefined` | Optional | Maximum power in kW across all locations grouped in this marker (disregarding availability) |
 | `geoHash` | `string \| undefined` | Optional | GeoHash of marker coordinates |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "markerType": "MultiLocation",
-  "uniqueKey": "2060319_6",
-  "locationCount": 6.0,
-  "evseCount": 10.0,
-  "maxPower": 42.0,
-  "geoHash": "sx",
-  "coordinates": {
-    "latitude": 39.14,
-    "longitude": 36.94
-  }
-}
+```ts
+import { MultiLocationMarker } from 'ev-recharge-sdk';
+
+const multiLocationMarker: MultiLocationMarker = {
+  markerType: 'MultiLocation',
+  uniqueKey: '2060319_6',
+  coordinates: {
+    latitude: 39.14,
+    longitude: 36.94,
+  },
+  locationCount: 6,
+  evseCount: 10,
+  maxPower: 42,
+  geoHash: 'sx',
+};
 ```
 

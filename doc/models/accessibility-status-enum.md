@@ -18,7 +18,9 @@ Accessibility Status
 
 ## Example
 
-```
-FreePublic
+```ts
+import { AccessibilityStatusEnum } from 'ev-recharge-sdk';
+
+const accessibilityStatus = AccessibilityStatusEnum.FreePublic;
 ```
 

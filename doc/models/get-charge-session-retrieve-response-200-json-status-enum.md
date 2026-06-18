@@ -16,7 +16,11 @@ Indicates overall status of the request
 
 ## Example
 
-```
-SUCCESS
+```ts
+import {
+  GetChargeSessionRetrieveResponse200JsonStatusEnum,
+} from 'ev-recharge-sdk';
+
+const getChargeSessionRetrieveResponse200JsonStatus = GetChargeSessionRetrieveResponse200JsonStatusEnum.SUCCESS;
 ```
 

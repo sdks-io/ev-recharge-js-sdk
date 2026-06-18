@@ -15,3 +15,11 @@ Filter by Locations that support the given Authorization Methods
 | `RFIDToken` |
 | `PnC` |
 
+## Example
+
+```ts
+import { GetEVLocationsAuthorizationMethodsEnum } from 'ev-recharge-sdk';
+
+const getEVLocationsAuthorizationMethods = GetEVLocationsAuthorizationMethodsEnum.RFIDToken;
+```
+

@@ -41,7 +41,7 @@ const client = Client.fromJsonConfig(JSON.stringify(configModule.default));
 ```json
 {
   "timeout": 30000,
-  "environment": "production",
+  "environment": "SIT",
   "clientCredentialsAuthCredentials": {
     "oAuthClientId": "oauthclientid",
     "oAuthClientSecret": "oauthclientsecret",

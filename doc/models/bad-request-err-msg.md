@@ -14,18 +14,18 @@
 | `description` | `string \| undefined` | Optional | Technical details of the error message, the example which is given in the sample payload is one of the scenarios. actual response will vary based on the validation error |
 | `details` | `string[] \| undefined` | Optional | - |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "code": "E0001",
-  "message": "Bad Request",
-  "description": "Authorization header is missing",
-  "details": [
-    "details7",
-    "details8",
-    "details9"
-  ]
-}
+```ts
+import { BadRequestErrMsg } from 'ev-recharge-sdk';
+
+const badRequestErrMsg: BadRequestErrMsg = {
+  code: 'E0001',
+  message: 'Bad Request',
+  description: 'Authorization header is missing',
+  details: [
+    'details3'
+  ],
+};
 ```
 

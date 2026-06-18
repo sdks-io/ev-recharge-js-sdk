@@ -20,19 +20,25 @@ Each Location will contain one or more EVSEs (Electric Vehicle Supply Equipment)
 | `connectors` | [`ConnectorV2[] \| undefined`](../../doc/models/connector-v2.md) | Optional | List of all connectors available on this EVSE unit. |
 | `authorizationMethods` | [`SingleLocationMarkerAuthorizationMethodsItemsEnum[] \| undefined`](../../doc/models/single-location-marker-authorization-methods-items-enum.md) | Optional | Methods that can be used to Authorize sessions on this EVSE |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "uid": "NL*MKS*E0000001*0_1",
-  "externalId": "01001188_1",
-  "evseId": "NL*TNM*E01000401*0",
-  "status": "Available",
-  "updated": "10/06/2021 10:44:24",
-  "physicalReference": "Green",
-  "authorizationMethods": [
-    "NewMotionApp"
-  ]
-}
+```ts
+import {
+  EvseV2,
+  EvseVOStatusEnum,
+  SingleLocationMarkerAuthorizationMethodsItemsEnum,
+} from 'ev-recharge-sdk';
+
+const evseV2: EvseV2 = {
+  uid: 'NL*MKS*E0000001*0_1',
+  externalId: '01001188_1',
+  evseId: 'NL*TNM*E01000401*0',
+  status: EvseVOStatusEnum.Available,
+  updated: '2021-10-06T10:44:24Z',
+  physicalReference: 'Green',
+  authorizationMethods: [
+    SingleLocationMarkerAuthorizationMethodsItemsEnum.NewMotionApp
+  ],
+};
 ```
 

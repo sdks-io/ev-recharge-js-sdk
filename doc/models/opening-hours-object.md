@@ -13,13 +13,18 @@
 | `startTime` | `string \| undefined` | Optional | Hour in 24h local time when the location opens. |
 | `endTime` | `string \| undefined` | Optional | Hour in 24h local time when the location closes. |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "weekDay": "Mon",
-  "startTime": "08:00",
-  "endTime": "23:00"
-}
+```ts
+import {
+  OpeningHoursObject,
+  OpeningHoursObjectWeekDayEnum,
+} from 'ev-recharge-sdk';
+
+const openingHoursObject: OpeningHoursObject = {
+  weekDay: OpeningHoursObjectWeekDayEnum.Mon,
+  startTime: '08:00',
+  endTime: '23:00',
+};
 ```
 

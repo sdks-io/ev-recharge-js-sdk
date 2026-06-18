@@ -18,7 +18,9 @@ Source of the last update
 
 ## Example
 
-```
-TariffService
+```ts
+import { ConnectorVOUpdatedByEnum } from 'ev-recharge-sdk';
+
+const connectorVOUpdatedBy = ConnectorVOUpdatedByEnum.Feed;
 ```
 

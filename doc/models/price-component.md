@@ -14,14 +14,16 @@
 | `price` | `number` | Required | Price per step in the specified currency for this price component |
 | `vat` | `number` | Required | VAT percentage applicable to this price component |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "type": "FLAT",
-  "stepSize": 1,
-  "price": 0.3,
-  "vat": 21.0
-}
+```ts
+import { PriceComponent, TypeEnum } from 'ev-recharge-sdk';
+
+const priceComponent: PriceComponent = {
+  type: TypeEnum.FLAT,
+  stepSize: 1,
+  price: 0.3,
+  vat: 21,
+};
 ```
 

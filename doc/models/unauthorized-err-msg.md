@@ -14,17 +14,18 @@
 | `description` | `string \| undefined` | Optional | Technical details of the error message, the example which is given in the sample payload is one of the scenarios. actual response will vary based on the technical nature |
 | `details` | `string[] \| undefined` | Optional | - |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "code": "E0003",
-  "message": "Unauthorized",
-  "description": "Invalid Access Token",
-  "details": [
-    "details1",
-    "details2"
-  ]
-}
+```ts
+import { UnauthorizedErrMsg } from 'ev-recharge-sdk';
+
+const unauthorizedErrMsg: UnauthorizedErrMsg = {
+  code: 'E0003',
+  message: 'Unauthorized',
+  description: 'Invalid Access Token',
+  details: [
+    'details9'
+  ],
+};
 ```
 

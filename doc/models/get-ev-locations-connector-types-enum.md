@@ -30,3 +30,11 @@ Filter by Locations that have Connectors with the set of Connector Types
 | `Tesla` |
 | `Unspecified` |
 
+## Example
+
+```ts
+import { GetEVLocationsConnectorTypesEnum } from 'ev-recharge-sdk';
+
+const getEVLocationsConnectorTypes = GetEVLocationsConnectorTypesEnum.Avcon;
+```
+

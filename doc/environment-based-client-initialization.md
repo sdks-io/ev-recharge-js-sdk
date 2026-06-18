@@ -45,7 +45,7 @@ const client = Client.fromEnvironment({
 ```env
 # Basic Configuration
 TIMEOUT=30000
-ENVIRONMENT=production
+ENVIRONMENT=SIT
 
 # Authentication Credentials
 O_AUTH_CLIENT_ID=oauthclientid

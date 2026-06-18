@@ -17,7 +17,9 @@ Methods that can be used to Authorize sessions on this EVSE
 
 ## Example
 
-```
-NewMotionApp
+```ts
+import { EvseVOAuthorizationMethodsEnum } from 'ev-recharge-sdk';
+
+const evseVOAuthorizationMethods = EvseVOAuthorizationMethodsEnum.NewMotionApp;
 ```
 

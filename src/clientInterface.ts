@@ -18,7 +18,7 @@ export type SdkRequestBuilderFactory = RequestBuilderFactory<
 
 export type SdkRequestBuilder = ReturnType<SdkRequestBuilderFactory>;
 
-export type Server = 'default' | 'access token server';
+export type Server = 'OAuth Server' | 'Shell';
 
 export type AuthParams = ReturnType<
   typeof createAuthProviderFromConfig

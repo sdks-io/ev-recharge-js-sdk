@@ -16,7 +16,9 @@ Indicates overall status of the request
 
 ## Example
 
-```
-SUCCESS
+```ts
+import { InlineResponse2021StatusEnum } from 'ev-recharge-sdk';
+
+const inlineResponse2021Status = InlineResponse2021StatusEnum.SUCCESS;
 ```
 

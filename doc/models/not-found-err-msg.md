@@ -14,17 +14,18 @@
 | `description` | `string \| undefined` | Optional | Technical details of the error message, the example which is given in the sample payload is one of the scenarios. actual response will vary based on the technical nature |
 | `details` | `string[] \| undefined` | Optional | - |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "code": "E0038",
-  "message": "Not Found",
-  "description": "Requested API resource not found",
-  "details": [
-    "details9",
-    "details0"
-  ]
-}
+```ts
+import { NotFoundErrMsg } from 'ev-recharge-sdk';
+
+const notFoundErrMsg: NotFoundErrMsg = {
+  code: 'E0038',
+  message: 'Not Found',
+  description: 'Requested API resource not found',
+  details: [
+    'details7'
+  ],
+};
 ```
 

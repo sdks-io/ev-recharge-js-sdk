@@ -15,3 +15,11 @@ Filter by Locations that support the given Authorization Methods
 | `RFIDToken` |
 | `PnC` |
 
+## Example
+
+```ts
+import { NearbyLocationsAuthorizationMethodsEnum } from 'ev-recharge-sdk';
+
+const nearbyLocationsAuthorizationMethods = NearbyLocationsAuthorizationMethodsEnum.NewMotionApp;
+```
+

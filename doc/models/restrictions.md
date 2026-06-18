@@ -23,22 +23,24 @@
 | `maxDuration` | `number \| undefined` | Optional | Maximum session duration in seconds |
 | `dayOfWeek` | [`DayOfWeekEnum[] \| undefined`](../../doc/models/day-of-week-enum.md) | Optional | - |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "startTime": "08:00",
-  "endTime": "18:00",
-  "startDate": "2021-10-06",
-  "endDate": "2021-10-31",
-  "minKwh": 0.1,
-  "maxKwh": 100,
-  "minCurrent": 0,
-  "maxCurrent": 500,
-  "minPower": 0,
-  "maxPower": 100,
-  "minDuration": 0,
-  "maxDuration": 86400
-}
+```ts
+import { Restrictions } from 'ev-recharge-sdk';
+
+const restrictions: Restrictions = {
+  startTime: '08:00',
+  endTime: '18:00',
+  startDate: '2021-10-06',
+  endDate: '2021-10-31',
+  minKwh: 0.1,
+  maxKwh: 100,
+  minCurrent: 0,
+  maxCurrent: 500,
+  minPower: 0,
+  maxPower: 100,
+  minDuration: 0,
+  maxDuration: 86400,
+};
 ```
 

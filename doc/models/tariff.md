@@ -17,17 +17,19 @@
 | `updatedBy` | [`TariffVOUpdatedByEnum \| undefined`](../../doc/models/tariff-vo-updated-by-enum.md) | Optional | Source of the last update of the tariff details |
 | `structure` | `string \| undefined` | Optional | Tariff structure that this tariff belongs to, typically Default unless specific tariff is defined for provider |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "startFee": 0.0,
-  "perMinute": 0.12,
-  "perKWh": 0.89,
-  "currency": "EUR",
-  "updated": "07/06/2021 10:44:24",
-  "updatedBy": "TariffService",
-  "structure": "default"
-}
+```ts
+import { Tariff, TariffVOUpdatedByEnum } from 'ev-recharge-sdk';
+
+const tariff: Tariff = {
+  startFee: 0,
+  perMinute: 0.12,
+  perKWh: 0.89,
+  currency: 'EUR',
+  updated: '2021-07-06T10:44:24Z',
+  updatedBy: TariffVOUpdatedByEnum.TariffService,
+  structure: 'default',
+};
 ```
 

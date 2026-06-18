@@ -13,3 +13,13 @@
 | `RFIDToken` |
 | `PnC` |
 
+## Example
+
+```ts
+import {
+  SingleLocationMarkerAuthorizationMethodsItemsEnum,
+} from 'ev-recharge-sdk';
+
+const singleLocationMarkerAuthorizationMethodsItems = SingleLocationMarkerAuthorizationMethodsItemsEnum.RFIDToken;
+```
+

@@ -16,3 +16,11 @@ Filter by Locations that have the given status
 | `Unavailable` |
 | `Unknown` |
 
+## Example
+
+```ts
+import { GetEVLocationsEvseStatusEnum } from 'ev-recharge-sdk';
+
+const getEVLocationsEvseStatus = GetEVLocationsEvseStatusEnum.Available;
+```
+

@@ -21,7 +21,9 @@
 
 ## Example
 
-```
-Mon
+```ts
+import { OpeningHoursObjectWeekDayEnum } from 'ev-recharge-sdk';
+
+const openingHoursObjectWeekDay = OpeningHoursObjectWeekDayEnum.Sat;
 ```
 

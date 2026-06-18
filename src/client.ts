@@ -122,21 +122,21 @@ function createHttpClientAdapter(client: HttpClient): HttpClientInterface {
   };
 }
 
-function getBaseUri(server: Server = 'default', config: Configuration): string {
-  if (config.environment === Environment.Production) {
-    if (server === 'default') {
-      return 'https://api.shell.com/ev';
+function getBaseUri(server: Server = 'Shell', config: Configuration): string {
+  if (config.environment === Environment.SIT) {
+    if (server === 'OAuth Server') {
+      return 'https://api-test.shell.com';
     }
-    if (server === 'access token server') {
-      return 'https://api.shell.com/v2/oauth';
-    }
-  }
-  if (config.environment === Environment.Environment2) {
-    if (server === 'default') {
+    if (server === 'Shell') {
       return 'https://api-test.shell.com/ev';
     }
-    if (server === 'access token server') {
-      return 'https://api.shell.com/v2/oauth';
+  }
+  if (config.environment === Environment.Production) {
+    if (server === 'OAuth Server') {
+      return 'https://api.shell.com';
+    }
+    if (server === 'Shell') {
+      return 'https://api.shell.com/ev';
     }
   }
   throw new Error('Could not get Base URL. Invalid environment or server.');

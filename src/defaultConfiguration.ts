@@ -10,7 +10,7 @@ import { RetryConfiguration } from './core.js';
 /** Default values for the configuration parameters of the client. */
 export const DEFAULT_CONFIGURATION: Configuration = {
   timeout: 0,
-  environment: Environment.Production,
+  environment: Environment.SIT,
 };
 
 /** Default values for retry configuration parameters. */

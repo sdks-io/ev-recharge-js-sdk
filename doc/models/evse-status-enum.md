@@ -14,3 +14,11 @@
 | `Unavailable` |
 | `Unknown` |
 
+## Example
+
+```ts
+import { EvseStatusEnum } from 'ev-recharge-sdk';
+
+const evseStatus = EvseStatusEnum.Available;
+```
+
